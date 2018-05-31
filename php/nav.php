@@ -9,7 +9,7 @@
         <!-- <a href="signin.php" class="action">Sign out</a> -->
     </div>
 
-    <script>
+    <script>  /// Opens/Closes menu in narrow views
         var menuOpen = false;
 
         function toggleMenu() {
