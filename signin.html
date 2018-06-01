@@ -1,11 +1,16 @@
+<!------------------------------------------------
+    Created on 2018/05/31 by Joel Barr
+    for Travel Experts Threaded Project
+    PROJ-207-B  OOSD Spring 2018, SAIT
+------------------------------------------------->
 <!doctype="html">
 <html>
 <head>
     <title>Travel Experts - Sign In</title>
     <!-- <?php include "php/stdhead.php"; ?> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="favicon.png" />
-    <link type="text/css" rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/favicon.png" />
+    <link type="text/css" rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
@@ -23,7 +28,7 @@
     </header>
 
     <!-- <nav> -->
-    <!-- <?php include "php/nav.php" ?>
+    <!-- <?php include "php/nav.php" ?> -->
     <nav>
         <button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div id="menu">
@@ -57,15 +62,25 @@
 
     <section>
         <h2>Sign In</h2>
-        <form action="index.html" method="post">
-            <label>Username</label>
-            <input type="text" name="uname">
-            <br>
-            <label>Password</label>
-            <input type="password" name="upass">
-            <br>
-            <input type="submit" name="submit">
-        </form>
+        <form method="post"><table>
+                <tr>
+                    <td><label>Username</label></td>
+                    <td><input type="text" name="uname"></td>
+                </tr>
+                <tr>
+                    <td><label>Password</label></td>
+                    <td><input type="password" name="upass"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" name="submit" value="Sign In" onclick="window.location.href = 'myaccount.html'" />
+                        <a href="">Recover Password</a><br>
+                        or<br>
+                        <a href="register.html">Register Now</a>
+                    </td>
+                </tr>
+            </table></form>
+            <button onclick="window.location.href='myaccount.html'">My Account</button>
     </section>
 
     <!-- <footer> -->
