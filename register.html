@@ -16,6 +16,7 @@
 </head>
 
 <body>
+	<div class = 'container-fluid'>
 		<!-- <header> -->
 		<!-- <?php include "php/header.php" ?> -->
 		<header>
@@ -63,7 +64,7 @@
 				<div class= "col-3 col-s-2">
 				</div>
 				<div class= "col-6 col-s-8">
-					<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method = "post" class = "myForm" onsubmit = "return validateForms() ">
+					<form action = "action.php" method = "post" class = "myForm" onsubmit = "return validateForms() ">
 						<fieldset>
 							<legend>Sign Up!</legend>
 							<div class= "row">
@@ -196,5 +197,6 @@
 			  is used under the <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">cc by-nc-nd 2.0 license</a>.
 		   </p>
 		</footer>
+	</div>
 </body>
 </html>
