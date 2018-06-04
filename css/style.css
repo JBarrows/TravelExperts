@@ -1,5 +1,5 @@
 body {
-	background-color:lightgray;
+	background-color:white;
 	margin:0;
 	padding:0;
 	font-family: 'Poppins', sans-serif;
@@ -15,7 +15,7 @@ header, nav, section, footer {
 div.titlebg {
 	position:static;
 	background: linear-gradient(to top right, #ffe866, #fff7cc);
-	background-image:url("Sunrise_view_from_a_plane.jpg");
+	background-image:url("../img/Sunrise_view_from_a_plane.jpg");
 	background-size:cover;
 	background-attachment:fixed;
 	color: white;
@@ -106,6 +106,7 @@ nav {
 	background: white;
 	border: none;
 	border-radius: 0 0 0 15px;
+	box-shadow: -1px 1px 2px #555;
 	height: 50px;
 	min-height: 50px;
 	min-width: 50px;
@@ -203,7 +204,7 @@ article img {
 }
 
 article.oddart {
-	background:gray;
+	background:white;
 }
 
 article.oddart img {
@@ -259,6 +260,18 @@ button:hover {
 button:active {
 	border: 3px inset #cce6ff;
 } */
+/****************************************
+************* Assist classes ************
+*****************************************/
+.activeicon { color: navy; }
+.activeicon:hover { color: blue; }
+.bg-2 { background: white; }
+.bg-dark { background: darkgray; }
+.border,
+.hover-border:hover { outline: 1px solid darkgray; }
+.bot-align { vertical-align: bottom; }
+.left-align { text-align: left; }
+.right-align { text-align: right; }
 
 /****************************************
  ************ MOBILE CHANGES ************

@@ -10,29 +10,21 @@
     <!-- <?php include "php/stdhead.php"; ?> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="img/favicon.png" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link type="text/css" rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <style>
-        .activeicon { color: navy; }
-        .activeicon:hover { color: blue; }
-        .bg-2 { background: white; }
-        .bg-dark { background: darkgray; }
-        .border,
-        .hover-border:hover { outline: 1px solid darkgray; }
-        /* .hover-border { margin:1px; }
-        .hover-border:hover { margin:0; } */
-        .bot-align { vertical-align: bottom; }
-        /* .highlights:hover { background: white; } */
-        .left-align { text-align: left; }
-        .right-align { text-align: right; }
         h3, h4 {
+            margin: 0;
             -webkit-margin-before: 0;
             -webkit-margin-after: 0;
         }
-        /* td { border:1px dotted hotpink; } */
+
         form { background:white; }
         td { padding: 1px 5px; vertical-align: top; }
     </style>
@@ -80,34 +72,41 @@
         </script>
     </nav>
 
-
+<div class="container">
     <section>
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
+
+            <!-- <tr id='namerow' class='hover-border'> -->
+        <i class="fas fa-pencil-alt activeicon" onclick="showForm('nameform'); hideElem('namerow')"></i> <strong>Name:</strong>
+        Joel Barr
+        <form id='nameform' name='nameform' action="">
+            <div class='row'>
+                <div class='col'>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for='fname'>First Name</label>
+                        <div class='col-sm-10'>
+                            <input type='text' class='form-control' id='fname' name='fname' value='Joel' />
+                        </div>
+                    </div>
+                </div>
+                <div class='col>'
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for='lname'>Last Name</label>
+                        <div class='col-sm-10'>
+                            <input type='text' class='form-control' id='fname' name='lname' value="Barr" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='form-group'>
+                <div class='col-sm-1'>
+                    <input type="submit" class='btn btn-default' name="namesubmit" value="Submit" />
+                </div>
+            </div>
+
+        </form>
         <table>
-            <tr id='namerow' class='hover-border'>
-                <td class="right-align"><i class="fas fa-pencil-alt activeicon" onclick="showForm('nameform'); hideElem('namerow')"></i> Name:</td>
-                <td>Joel Barr</td>
-            </tr>
-            <tr >
-                <td colspan="2">
-                    <form id='nameform' name='nameform' class="border"  style="Display: none;">
-                        <table>
-                            <tr>
-                                <td><label>First Name</label></td>
-                                <td><input type='text' name='fname' value='Joel' /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Last Name</label></td>
-                                <td><input type='text' name='lname' value="Barr" /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="right-align"><input type="submit" name="namesubmit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                    </form>
-                </td>
-            </tr>
             <tr id='contactrow'  class='hover-border'>
                 <td class="right-align"><i class="fas fa-pencil-alt activeicon" onclick="showForm('phoneform'); hideElem('contactrow');"></i> Phone:</td>
                 <td>
@@ -177,7 +176,10 @@
                 elem.style.display = 'none';
             }
         </script>
-
+        <br />
+        <!-----------------------
+            My Orders
+        ------------------------->
         <h2>My Orders</h2>
         <table id="myorderstable">
             <tr style="color:#222">
@@ -186,21 +188,22 @@
             </tr>
             <tr>
                 <td rowspan="3" class="right-align">35653B</td>
-                <td><h3>London, England</h3></td>
-                <td colspan="2" class="bot-align">2016-05-09 until 2016-06-03</td>
+                    <td><strong>London, England</strong></td>
+                    <td colspan="2" class="bot-align">2016-05-09 until 2016-06-03</td>
             </tr>
             <tr>
                 <td colspan="3">All-inclusive European tour</td>
             </tr>
             <tr>
-                <td><h4>Date Placed</h4>2000-05-04</td>
-                <td><h4>Travelers</h4>1</td>
-                <td><h4>type</h4>Leisure</td>
+                <td><b>Date Placed</b><br>2000-05-04</td>
+                <td><b>Travelers</b><br>1</td>
+                <td><b>Type</b><br>Leisure</td>
             </tr>
         </table>
         <!-- TODO: Sign in button can be removed once php is active -->
         <button onclick="window.location.href = 'signin.html'">Sign In</button>
     </section>
+</div>
 
     <!-- <footer> -->
     <!-- <?php include "php/footer.php" ?> -->
