@@ -1,3 +1,8 @@
+<!------------------------------------------------
+    Created on 2018/05/31 by Joel Barr
+    for Travel Experts Threaded Project
+    PROJ-207-B  OOSD Spring 2018, SAIT
+------------------------------------------------->
 <!doctype="html">
 <html>
 <head>
@@ -23,7 +28,7 @@
     </header>
 
     <!-- <nav> -->
-    <!-- <?php include "php/nav.php" ?>
+    <!-- <?php include "php/nav.php" ?> -->
     <nav>
         <button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div id="menu">
@@ -57,15 +62,25 @@
 
     <section>
         <h2>Sign In</h2>
-        <form action="index.html" method="post">
-            <label>Username</label>
-            <input type="text" name="uname">
-            <br>
-            <label>Password</label>
-            <input type="password" name="upass">
-            <br>
-            <input type="submit" name="submit">
-        </form>
+        <form method="post"><table>
+                <tr>
+                    <td><label>Username</label></td>
+                    <td><input type="text" name="uname"></td>
+                </tr>
+                <tr>
+                    <td><label>Password</label></td>
+                    <td><input type="password" name="upass"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" name="submit" value="Sign In" onclick="window.location.href = 'myaccount.html'" />
+                        <a href="">Recover Password</a><br>
+                        or<br>
+                        <a href="register.html">Register Now</a>
+                    </td>
+                </tr>
+            </table></form>
+            <button onclick="window.location.href='myaccount.html'">My Account</button>
     </section>
 
     <!-- <footer> -->
