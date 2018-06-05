@@ -1,8 +1,3 @@
-<!------------------------------------------------
-    Created on 2018/05/31 by Joel Barr
-    for Travel Experts Threaded Project
-    PROJ-207-B  OOSD Spring 2018, SAIT
-------------------------------------------------->
 <!doctype="html">
 <html>
 <head>
@@ -22,7 +17,7 @@
 
 <body>
     <!-- <header> -->
-    <!-- <?php include "php/header.php" ?> -->
+    <!-- <?php //include "php/header.php" ?> -->
     <header>
         <a href="index.php">
             <img id="headlogo" src="img/logo.png" />
@@ -31,7 +26,7 @@
     </header>
 
     <!-- <nav> -->
-    <!-- <?php include "php/nav.php" ?> -->
+    <!-- <?php include "php/nav.php" ?>-->
     <nav>
         <button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div id="menu">
@@ -72,6 +67,7 @@
 	</script>
 
     <section  style = "padding-top: 20px">
+
 			<div class= "row">
 				<div class= "col-sm col"></div>
 				<div class= "col-sm-6 col-10">

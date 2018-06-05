@@ -1,3 +1,35 @@
+
+	
+<?php
+	session_start();
+	/*if(isset($_SESSION['userid'])) {
+				header('Location: register_agent.php');
+	}*/	
+	
+	$processed_array = array(); //new array to store processed_array
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		function test_input($data) {
+		($data == '')? $data = NULL: $data = $data;
+		 $data = trim($data);
+		 $data = stripslashes($data);
+		 $data = htmlspecialchars($data);
+		 return $data;
+		}
+		
+		$processed_array = array(); //new array to store processed_array
+		
+		foreach($_POST as $key => $value){
+			$processed_array[$key] = test_input($value);
+		}
+	
+		include 'registration_login_functions.php';
+		
+		//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
+		array_merge($processed_array, array('AgentId'=>''));
+		//print_r($processed_array);
+		insertData($record = 'customers', $processed_array);
+	}
+?>
 <!doctype="html">
 <html>
 <head>
@@ -16,8 +48,8 @@
 </head>
 
 <body>
-		<!-- <header> -->
-		<!-- <?php include "php/header.php" ?> -->
+		<!--<header>-->
+		<!--<?php //include "php/header.php" ?>-->
 		<header>
 			<a href="index.php">
 				<img id="headlogo" src="img/logo.png" />
@@ -26,15 +58,15 @@
 		</header>
 
 		<!-- <nav> -->
-		<!-- <?php include "php/nav.php" ?> -->
+		<!-- <?php //include "php/nav.php" ?> -->
 		<nav>
 			<button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
 			<div id="menu">
-				<a href="index.html">Home</a>
-				<a href="packages.html">Packages</a>
-				<a href="contact.html">Contact</a>
-				<a href="register.html" class="action">Register</a>
-				<a href="signin.html" class="action" style="background:navy;">Sign in</a>
+				<a href="index.php">Home</a>
+				<a href="packages.php">Packages</a>
+				<a href="contact.php">Contact</a>
+				<a href="register.php" class="action">Register</a>
+				<a href="signin.php" class="action" style="background:navy;">Sign in</a>
 				<!-- <a href="signin.php" class="action">Sign out</a> -->
 			</div>
 
@@ -79,13 +111,22 @@
 			else return false;
 		}
 		</script>
+		
+		
 
 		<section style = "padding-top: 20px">
 		 
 			<div class= "row">
 				<div class= "col-sm col"></div>
 				<div class= "col-sm-6 col-10">
-					<form action = "action.php" id ="register" method = "post" onsubmit = "return validateForms() ">
+				<p style ="color : red; text-align:center;">
+				<?php
+				if(isset($_SESSION['message'])){
+									echo $_SESSION['message'];
+								}
+				?>
+				</p>
+					<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="register" method = "post">
 					<legend>Sign Up!</legend>
 					  <div class="form-row">
 						<div class="form-group col-md-6">
@@ -113,13 +154,6 @@
 											   class="form-control req"
 											   placeholder = "1234 Main St">
 					  </div>
-					  <div class="form-group">
-						<label for="inputAddress2">Address 2</label>
-						<input type="text" name = "CustAddress2"
-											   class="form-control"
-											   placeholder="Apartment, studio, or floor">
-					  </div>
-					  
 					  
 					  <div class="form-row">
 						<div class="form-group col-md-3">
@@ -158,9 +192,9 @@
 						</div>
 						
 						<div class="form-group col-md-3">
-						  <label for="inputCity">Country</label>
-						  <select class="form-control">
-										<option value="canada" selected="selected">Canada</option>
+						  <label for="inputCountry">Country</label>
+						  <select class="form-control" name ="CustCountry">
+										<option value="Canada" selected="selected">Canada</option>
 										<option value="other">Other</option>
 										</select>
 						</div>
@@ -181,6 +215,15 @@
 											   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
 						</div>
 					 </div>
+					 
+					 <div class="form-group">
+						<label for="inputAddress">Email</label>
+						<input type = "email" name = "CustEmail" 
+											   minlength = "1"
+											   title = "Please enter your address"
+											   class="form-control req"
+											   placeholder = "name@example.com">
+					 </div>
 					 <div class= "form-row">
 									<div class="form-group col-md-6">
 										<input type = "submit" class = "btn btn-primary btn-block" value = "Register" onclick = "return confirmRegister()">
@@ -196,8 +239,9 @@
 			</div>
 		</section>
 	</div>
+		
 		<!-- <footer> -->
-		<!-- <?php include "php/footer.php" ?> -->
+		<!-- <?php //include "php/footer.php" ?> -->
 		<footer>
 		  <p>&copy;SAIT, Joel Barr, and Travel Agents</p>
 		  <p>
@@ -209,3 +253,6 @@
 	
 </body>
 </html>
+<?php
+unset($_SESSION['message']);
+?>
