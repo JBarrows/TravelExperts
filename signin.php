@@ -17,7 +17,7 @@
 
 <body>
     <!-- <header> -->
-    <!-- <?php include "php/header.php" ?> -->
+    <!-- <?php //include "php/header.php" ?> -->
     <header>
         <a href="index.php">
             <img id="headlogo" src="img/logo.png" />
