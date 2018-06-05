@@ -9,68 +9,194 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <!-- <header> -->
-    <!-- <?php include "php/header.php" ?> -->
-    <header>
-        <a href="index.php">
-            <img id="headlogo" src="img/logo.png" />
-            <p id="headtitle">Travel Experts</p>
-        </a>
-    </header>
+	<div class = 'container-fluid'>
+		<!-- <header> -->
+		<!-- <?php include "php/header.php" ?> -->
+		<header>
+			<a href="index.php">
+				<img id="headlogo" src="img/logo.png" />
+				<p id="headtitle">Travel Experts</p>
+			</a>
+		</header>
 
-    <!-- <nav> -->
-    <!-- <?php include "php/nav.php" ?> -->
-    <nav>
-        <button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div id="menu">
-            <a href="index.html">Home</a>
-            <a href="packages.html">Packages</a>
-            <a href="contact.html">Contact</a>
-            <a href="register.html" class="action">Register</a>
-            <a href="signin.html" class="action" style="background:navy;">Sign in</a>
-            <!-- <a href="signin.php" class="action">Sign out</a> -->
-        </div>
+		<!-- <nav> -->
+		<!-- <?php include "php/nav.php" ?> -->
+		<nav>
+			<button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+			<div id="menu">
+				<a href="index.html">Home</a>
+				<a href="packages.html">Packages</a>
+				<a href="contact.html">Contact</a>
+				<a href="register.html" class="action">Register</a>
+				<a href="signin.html" class="action" style="background:navy;">Sign in</a>
+				<!-- <a href="signin.php" class="action">Sign out</a> -->
+			</div>
 
-        <script>  /// Opens/Closes menu in narrow views
-            var menuOpen = false;
+			<script>  /// Opens/Closes menu in narrow views
+				var menuOpen = false;
 
-            function toggleMenu() {
-                var menu = document.getElementById("menu");
-                if (!menu) {return;}
+				function toggleMenu() {
+					var menu = document.getElementById("menu");
+					if (!menu) {return;}
 
-                if (menuOpen) {
-                    //Close menu
-                    menu.style.display = null;
-                } else {
-                    //Open menu
-                    menu.style.display = "block";
-                }
-                menuOpen = !menuOpen;
-            }
-        </script>
-    </nav>
+					if (menuOpen) {
+						//Close menu
+						menu.style.display = null;
+					} else {
+						//Open menu
+						menu.style.display = "block";
+					}
+					menuOpen = !menuOpen;
+				}
+			</script>
+		</nav>
 
 
-    <section>
-        <h2>Register</h2>
-        <p>
-            This is the register page, it will contain a form for customers to register an account
-        </p>
-    </section>
+		<section>
+			<div class= "row">
+				<div class= "col-3 col-s-2">
+				</div>
+				<div class= "col-6 col-s-8">
+					<form action = "action.php" method = "post" class = "myForm" onsubmit = "return validateForms() ">
+						<fieldset>
+							<legend>Sign Up!</legend>
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "firstname">First Name :</label>
+								</div>
+								<div class= "col-9" id = "firstname">
+									<input type = "text" name = "firstname"  
+										   minlength = "1"
+										   title = "What is your name? "> 
+								</div>
+							</div>
+						
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "lastname">Last Name :</label>
+								</div>
+								<div class= "col-9"  id = "lastname">
+									<input type = "text" name = "lastname" 
+										   minlength = "1"
+										   title = "What is your name? ">
+								</div>
+							</div>
+							
+							<div class= "row">
+								
+									<label for = "gender">Gender : </label>
+								
+									<input type = "radio" name = "gender" value = "male" checked> male
+									<input type = "radio" name = "gender" value = "female"> female
+									
+							</div>
+							
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "email">Email :</label> 
+								</div>
+								<div class= "col-9" id = "email">
+									<input type = "email" name = "email" 
+										   title = "name@example.com">
+								</div>
+							</div>
+							
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "password">Password :</label> 
+								</div>
+								<div class= "col-9" id = "password">
+									<input type = "password" name = "password1"  
+										   pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+										   title = "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+								</div>
+							</div>
+							
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "post_code">Postal Code:</label> 
+								</div>
+								<div class= "col-9" id = "post">
+									<input type = "text" name = "post_code" 
+										   pattern ="[AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy][0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz] ?[0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz][0-9] ?"
+										   maxlength = "7"
+										   title = "Should be a valid Canadian post code, eg: T2X 1V2">
+										  
+								</div>
+							</div>
+							
+							<div class= "row">
+								<div class= "col-6">
+									<input type = "submit" value = "Register" onclick = "return confirmRegister()">
+								</div>
+								<div class= "col-6">
+									<input type = "reset" value = "Reset" onclick = "return confirmReset()">
+								</div>
+							</div>
+						</fieldset>
+					</form>
 
-    <!-- <footer> -->
-    <!-- <?php include "php/footer.php" ?> -->
-    <footer>
-      <p>&copy;SAIT, Joel Barr, and Travel Agents</p>
-      <p>
-          "<a href="https://flic.kr/p/cTsU15" target="_blank">Sunrise view from a plane</a>"
-          by <a href="https://www.flickr.com/photos/frankfarm/" target="_blank">Frank Farm</a>
-          is used under the <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">cc by-nc-nd 2.0 license</a>.
-       </p>
-    </footer>
+					<form action = "/action.php" method = "post" id ="login">
+						<fieldset>
+							<legend>Already a member, Sign In!</legend>
+
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "email">Email :</label> 
+								</div>
+								<div class= "col-9" id = "email_login">
+									<input type = "email" name = "email" >
+								</div>
+							</div>
+							
+							<div class= "row">
+								<div class= "col-3">
+									<label for = "firstname">Password :</label> 
+								</div>
+								<div class= "col-9" id = "password_login">
+									<input type = "password" name = "password"
+										   minlength = "8" maxlength = "15">
+								</div>
+							</div>
+							
+							<div class= "row">
+								
+									<label for = "rememberUser">Remember my username: </label>
+									<input type ="checkbox" name = "rememberUser">
+									
+							</div>
+							
+							<div class= "row">
+								<div class= "col-12">
+									<input type = "submit" value = "Login" onclick = "return confirmLogin()">
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class= "col-3 col-s-2">
+				</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- <footer> -->
+		<!-- <?php include "php/footer.php" ?> -->
+		<footer>
+		  <p>&copy;SAIT, Joel Barr, and Travel Agents</p>
+		  <p>
+			  "<a href="https://flic.kr/p/cTsU15" target="_blank">Sunrise view from a plane</a>"
+			  by <a href="https://www.flickr.com/photos/frankfarm/" target="_blank">Frank Farm</a>
+			  is used under the <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">cc by-nc-nd 2.0 license</a>.
+		   </p>
+		</footer>
+	</div>
 </body>
 </html>
