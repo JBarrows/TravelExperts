@@ -71,6 +71,7 @@ header {
 	background:#444;
 	color: white;
 	font-size:larger;
+	margin-bottom: 20px;
 	position: fixed;
 	position:sticky;
 		height:40px;
@@ -81,7 +82,7 @@ header {
 	z-index: 9;
 }
 
-header a {
+header a, header a:hover {
 	color:white;
 	text-decoration: none;
 }
@@ -110,21 +111,26 @@ p#headtitle {
 }
 
 /* Nav */
-nav {
+nav.jnav {
 	background: white;
 	border: none;
 	border-radius: 0 0 0 15px;
 	box-shadow: -1px 1px 2px #555;
-	height: 50px;
-	min-height: 50px;
-	min-width: 50px;
-	padding: 0 2vw;
-	position: fixed;
-		top:   0;
-		right: 0;
+	position:fixed;
+	top:0;
+	right:0;
 	z-index: 10;
 }
 
+nav.jnav .navbar-toggler {
+	border-color: transparent;
+}
+
+nav.jnav .navbar-toggler:hover {
+	background-color: lightgray;
+}
+
+/*
 .menubtn {
 	color:black;
 	display:none;
@@ -157,22 +163,7 @@ nav {
 
 #menu a:hover {
 	background-color: powderblue;
-}
-
-button, #menu a.action {
-	background-color:#00F;
-	border-width: 0;
-	border-radius: 8px;
-	color: white;
-	height:auto;
-	margin:5px;
-	padding:5px 5px;
-}
-
-button:hover, #menu a.action:hover {
-	background-color: #55F;
-	border-width: 0;
-}
+} */
 
 footer {
 	background-color: black;
@@ -277,9 +268,12 @@ button:active {
 .bg-dark { background: darkgray; }
 .border, .hover-border:hover { outline: 1px solid darkgray; }
 .bot-align { vertical-align: bottom; }
+.cursor-pointer { cursor:pointer; }
 .left-align { text-align: left; }
 .right-align { text-align: right; }
+.socialicons { font-size: 2em;}
 
+i.fas { line-height: 1.5; }
 /****************************************
  ************ MOBILE CHANGES ************
  ****************************************/
