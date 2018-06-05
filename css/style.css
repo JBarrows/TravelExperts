@@ -265,10 +265,9 @@ button:active {
 *****************************************/
 .activeicon { color: navy; }
 .activeicon:hover { color: blue; }
-.bg-2 { background: white; }
+.bg-2 { background: lightgray; }
 .bg-dark { background: darkgray; }
-.border,
-.hover-border:hover { outline: 1px solid darkgray; }
+.border, .hover-border:hover { outline: 1px solid darkgray; }
 .bot-align { vertical-align: bottom; }
 .left-align { text-align: left; }
 .right-align { text-align: right; }

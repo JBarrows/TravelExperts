@@ -6,7 +6,7 @@
 <!doctype="html">
 <html>
 <head>
-    <title>Travel Experts - Sign In</title>
+    <title>Travel Experts - Account</title>
     <!-- <?php include "php/stdhead.php"; ?> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="img/favicon.png" />
@@ -76,130 +76,123 @@
     <section>
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
-
-            <!-- <tr id='namerow' class='hover-border'> -->
-        <i class="fas fa-pencil-alt activeicon" onclick="showForm('nameform'); hideElem('namerow')"></i> <strong>Name:</strong>
-        Joel Barr
-        <form id='nameform' name='nameform' action="">
+        <!-- <tr id='namerow' class='hover-border'> -->
+        <div id='accordion'>
             <div class='row'>
-                <div class='col'>
-                    <div class="form-group">
-                        <label class='control-label col-sm-2' for='fname'>First Name</label>
-                        <div class='col-sm-10'>
-                            <input type='text' class='form-control' id='fname' name='fname' value='Joel' />
-                        </div>
-                    </div>
-                </div>
-                <div class='col>'
-                    <div class="form-group">
-                        <label class='control-label col-sm-2' for='lname'>Last Name</label>
-                        <div class='col-sm-10'>
-                            <input type='text' class='form-control' id='fname' name='lname' value="Barr" />
-                        </div>
-                    </div>
-                </div>
+                <button class='btn btn-link' data-toggle='collapse' data-target='#nameform'>
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <b>Name: </b>
+                Joel Barr
             </div>
-            <div class='form-group'>
-                <div class='col-sm-1'>
+            <form class='collapse' data-parent='#accordion' id='nameform' name='nameform' action="">
+                <div class='form-row'>
+                    <div class="form-group col-sm-4 col-md-3">
+                        <label for='fname'>First Name</label>
+                        <input type='text' class='form-control' id='fname' name='fname' value='Joel' />
+                    </div>
+                    <div class="form-group col-sm-4 col-md-3">
+                        <label for='lname'>Last Name</label>
+                        <input type='text' class='form-control' id='fname' name='lname' value="Barr" />
+                    </div>
+                </div>
+                <div class='form-group'>
                     <input type="submit" class='btn btn-default' name="namesubmit" value="Submit" />
                 </div>
+            </form>
+            <div class='row'>
+                <button class='btn btn-link' data-toggle='collapse' data-target='#phoneform'>
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <strong>Phone: </strong>
+                403-555-5520 (Business)<br>
+                403-555-4555 (Home)
             </div>
-
-        </form>
-        <table>
-            <tr id='contactrow'  class='hover-border'>
-                <td class="right-align"><i class="fas fa-pencil-alt activeicon" onclick="showForm('phoneform'); hideElem('contactrow');"></i> Phone:</td>
-                <td>
-                    403-555-5520 (Business)<br>
-                    403-555-4555 (Home)
-                </td>
-            </tr>
-            <tr>
-                <td colspan='2'>
-                    <form id='phoneform' name='nameform' class="border" style="Display: none;">
-                        <table>
-                            <tr>
-                                <td><label>Business</label></td>
-                                <td><input type='text' name='bphone' value='403-555-5520' /></td>
-                            </tr>
-                            <tr>
-                                <td><label>Home</label></td>
-                                <td><input type='text' name='hphone' value='403-555-4555' /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="right-align"><input type="submit" name="phonesubmit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                    </form>
-                </td>
-            </tr>
-            <tr id="addrrow" class='hover-border'>
-                <td class="right-align"><i class="fas fa-pencil-alt activeicon" onclick="showForm('addrform'); hideElem('addrrow');"></i> Address:</td>
-                <td>4519 Vargas St NE<br>Calgary, AB<br>T3K 0M6</td>
-            </tr>
-            <tr>
-                <td colspan='2'>
-                    <form id='addrform' name='addrform'  class="border" style="Display: none;">
-                        <table>
-                            <tr>
-                                <td><label>Street</label></td>
-                                <td><input type='text' name='streetaddr' value='4519 Vargas St NE'/></td>
-                            </tr>
-                            <tr>
-                                <td><label>City</label></td>
-                                <td><input type='text' name='city' value='Calgary'/></td>
-                            </tr>
-                            <tr>
-                                <td><label>Province</label></td>
-                                <td><input type='text' name='prov' value='AB'/></td>
-                            </tr>
-                            <tr>
-                                <td><label>Postal Code</label></td>
-                                <td><input type='text' name='postcode' value='T3K 0M6' /></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="right-align"><input type="submit" name="addrsubmit" value="Submit" /></td>
-                            </tr>
-                        </table>
-                    </form>
-                </td>
-            </tr>
-        </table>
-        <script> // Shows a form to modify the user's information
-            function showForm(formname) {
-                var elem = document.getElementById(formname);
-                elem.style.display = 'block';
-            }
-
-            function hideElem(elemId) {
-                var elem = document.getElementById(elemId);
-                elem.style.display = 'none';
-            }
-        </script>
+            <form class='collapse' data-parent='#accordion' id='phoneform' name='phoneform'>
+                <div class='form-row'>
+                    <div class='form-group col-sm-4 col-md-3'>
+                        <label for='bphone'>Business</label>
+                        <input type='text' class='form-control' id='bphone' name='bphone' value='403-555-5520' />
+                    </div>
+                    <div class=' form-group col-sm-4 col-md-3'>
+                        <label for='hphone'>Home</label>
+                        <input type='text' class='form-control' id='bphone' name='hphone' value='403-555-4555' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <input type="submit" class='btn btn-default' name="phonesubmit" value="Submit" />
+                </div>
+            </form>
+            <div class='row'>
+                <button class='btn btn-link' data-toggle='collapse' data-target='#addrform'>
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <strong>Address:</strong>
+                4519 Vargas St NE<br>
+                Calgary, AB<br>
+                T3K 0M6
+            </div>
+            <form class='collapse' data-parent='#accordion' id='addrform' name='addrform'>
+                <div class='form-row'>
+                    <div class='form-group col-sm-8 col-md-6'>
+                        <label for='streetaddr'>Street</label>
+                        <input type='text' class='form-control' id='streetaddr' name='streetaddr' value='4519 Vargas St NE'/>
+                    </div>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group col-sm-4 col-md-3'>
+                        <label for='city'>City</label>
+                        <input type='text' class='form-control' id='city' name='city' value='Calgary'/>
+                    </div>
+                    <div class='form-group col-sm-4 col-md-3'>
+                        <label for='prov'>Province</label>
+                        <input type='text' class='form-control' id='prov' name='prov' value='AB'/>
+                    </div>
+                </div>
+                <div class='form-row'>
+                    <div class='form-group col-sm-4 col-md-3'>
+                        <label for='postcode'>Postal Code</label>
+                        <input type='text' class='form-control' id='postcode' name='postcode' value='T3K 0M6' />
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <input type="submit" class='btn btn-default' name="addrsubmit" value="Submit" />
+                </div>
+            </form>
+        </div> <!-- </accordion> -->
         <br />
         <!-----------------------
             My Orders
         ------------------------->
         <h2>My Orders</h2>
-        <table id="myorderstable">
-            <tr style="color:#222">
-                <th>Booking ID</th>
-                <th colspan="3" class="left-align">Description</th>
-            </tr>
-            <tr>
-                <td rowspan="3" class="right-align">35653B</td>
-                    <td><strong>London, England</strong></td>
-                    <td colspan="2" class="bot-align">2016-05-09 until 2016-06-03</td>
-            </tr>
-            <tr>
-                <td colspan="3">All-inclusive European tour</td>
-            </tr>
-            <tr>
-                <td><b>Date Placed</b><br>2000-05-04</td>
-                <td><b>Travelers</b><br>1</td>
-                <td><b>Type</b><br>Leisure</td>
-            </tr>
-        </table>
+        <div class='row'>
+            <p class='col-3 col-md-2 col-xl-2'>Booking ID</p>
+            <p class='col-9 col-md-10 col-lg-7'>Information</p>
+        </div>
+        <div class='row bg-2'>
+            <div class='col-3 col-md-2 col-lg-2'>35653B</div>
+            <div class='col-9 col-md-10 col-lg-7'>
+                <div class='row'>
+                    <p class='col-md-4 col-lg-3'><strong>London, England</strong></p>
+                    <p class='col-md-8 col-lg-9'>2016-05-09 until 2016-06-03</p>
+                </div>
+                <div class='row'>
+                    <p class='col'>All-inclusive European tour</p>
+                </div>
+                <div class='row'>
+                    <div class='col-4 col-lg-3'>
+                        <b>Date Placed</b><br>2000-05-04
+                    </div>
+                    <div class='col-4 col-lg-3'>
+                        <b>Travelers</b><br>1
+                    </div>
+                    <div class='col-4 col-lg-3'>
+                        <b>Type</b><br>Leisure
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- TODO: Sign in button can be removed once php is active -->
         <button onclick="window.location.href = 'signin.html'">Sign In</button>
     </section>
