@@ -4,6 +4,8 @@
     PROJ-207-B  OOSD Spring 2018, SAIT
 ------------------------------------------------->
 <?php
+    session_start();
+
     // Get login session information
     if (isset($_SESSION['userid'])) {
         $user = $_SESSION['userid'];
@@ -15,24 +17,13 @@
         // header("location: login.php?error=invalid+access");
     }
 
-    // Check if a new package has been ordered
-    if (isset($_SESSION['orderpackageid']))
-    {
-        $packageid = $_SESSION['orderpackageid'];
-        // SELECT * FROM `packages_products_suppliers` WHERE `PackageId`=$packageid
-        // while ($prodSupId = FETCH_ASSOC(^^))
-            // SELECT * FROM `products_suppliers` WHERE `ProductSupplierId`=$prodSupId;
-            // $prodid = FETCH_ASSOC(^^)['ProductId']
-            // SELECT * FROM `products` WHERE `ProductId`=$prodid;
-    }
-
     $servername = "localhost";
 	$username = "root";
 	$password = "";
 	$dbname = "travelexperts";
 
+    /* Connect to Database */
 	try {
-        /* Connect to Database */
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 		//create a logfile to track errors in database insert
@@ -41,8 +32,66 @@
 
 		// set the PDO error mode to exception so it throws an exception when there is an error
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+		$errorString = $e->getMessage();
+		fwrite($logfile, "Error!: " .$errorString);
+        echo $errorString;
+	}
 
-        /* Fetch Customer Information */
+    // Check if a new package is being ordered
+    if (isset($_SESSION['orderpackageid']))
+    {
+        try {
+            $packageid = $_SESSION['orderpackageid'];
+            $selectPackage = $conn->query("SELECT * FROM `packages` WHERE `PackageId`=$packageid");
+            $package = $selectPackage->fetch(PDO::FETCH_ASSOC);
+
+            // Create Booking values
+            $values = array();
+            $values['BookingDate'] = "'".date()."'";
+            $values['BookingNo'] = "'".strval(mt_rand(1235,254123)."'");
+            $values['TravelerCount'] = 1;
+            $values['CustomerId'] = $user;
+            $values['TripType'] = "'L'";
+            $values['PackageId'] = $packageid;
+
+            // Insert Booking
+            $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
+            $valStr = implode($values);
+            $sql = "INSERT INTO `bookings`({$attrStr}) VALUES ({$valStr});";
+            $conn->exec($sql);
+            
+            // Make sure to get the booking ID!
+            $bookId = $conn->lastInsertId();
+
+            // Create BookingDetail values
+            $values = array();
+            $values['TripStart'] = "'".$package['PkgStartDate']."'";
+            $values['TripEnd'] = "'".$package['PkgEndDate']."'";
+            $values['Description'] = "'".$package['PkgDesc']."'";
+            $values['Destination'] = "'".$package['PkgName']."'";
+            $values['BasePrice'] = $package['PkgBasePrice'];
+            $values['AgencyCommission'] = $package['PkgAgencyCommission'];
+            $values['BookingId'] = $bookId;
+
+            // Insert BookingDetail
+            $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
+            $valStr = implode($values);
+            $sql = "INSERT INTO `bookingdetails`({$attrStr}) VALUES ({$valStr});";
+            $conn->exec($sql);
+
+            // Display Message
+            $message = "Congratulations! {$package['PkgName']} booked!";
+
+        } catch(PDOException $e) {
+            $errorString = $e->getMessage();
+            fwrite($logfile, "Error!: " .$errorString);
+            echo $errorString;
+        }
+    }
+
+    /* Fetch Customer Information */
+    try {
         $attributes = "`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`";
         $result = $conn->query("SELECT $attributes FROM `customers` WHERE `CustomerId`=$user;");
         $custInfo = $result->fetch(PDO::FETCH_ASSOC);
@@ -73,6 +122,12 @@
 
 <div class="container">
     <section>
+        <?php
+            if (isset($message)) {
+                echo "<div class='alert alert-success'>$message</div>";
+            }
+        ?>
+
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
         <!-- <tr id='namerow' class='hover-border'> -->
