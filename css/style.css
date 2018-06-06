@@ -168,6 +168,7 @@ nav.jnav .navbar-toggler:hover {
 footer {
 	background-color: black;
 	color: white;
+	margin:0;
 	padding: 10px;
 	text-align: center
 }
