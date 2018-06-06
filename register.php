@@ -49,45 +49,10 @@
 
 <body>
 		<!--<header>-->
-		<!--<?php //include "php/header.php" ?>-->
-		<header>
-			<a href="index.php">
-				<img id="headlogo" src="img/logo.png" />
-				<p id="headtitle">Travel Experts</p>
-			</a>
-		</header>
-
+		<?php include "php/header.php" ?>
 		<!-- <nav> -->
-		<!-- <?php //include "php/nav.php" ?> -->
-		<nav>
-			<button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-			<div id="menu">
-				<a href="index.php">Home</a>
-				<a href="packages.php">Packages</a>
-				<a href="contact.php">Contact</a>
-				<a href="register.php" class="action">Register</a>
-				<a href="signin.php" class="action" style="background:navy;">Sign in</a>
-				<!-- <a href="signin.php" class="action">Sign out</a> -->
-			</div>
-
-			<script>  /// Opens/Closes menu in narrow views
-				var menuOpen = false;
-
-				function toggleMenu() {
-					var menu = document.getElementById("menu");
-					if (!menu) {return;}
-
-					if (menuOpen) {
-						//Close menu
-						menu.style.display = null;
-					} else {
-						//Open menu
-						menu.style.display = "block";
-					}
-					menuOpen = !menuOpen;
-				}
-			</script>
-		</nav>
+		<?php include "php/nav.php" ?>
+		
 		<script>
 		function confirmReset(){
 				//reset forms to default value by removing required and other added attributes
@@ -295,15 +260,7 @@
 
 		
 		<!-- <footer> -->
-		<!-- <?php //include "php/footer.php" ?> -->
-		<footer>
-		  <p>&copy;SAIT, Joel Barr, and Travel Agents</p>
-		  <p>
-			  "<a href="https://flic.kr/p/cTsU15" target="_blank">Sunrise view from a plane</a>"
-			  by <a href="https://www.flickr.com/photos/frankfarm/" target="_blank">Frank Farm</a>
-			  is used under the <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">cc by-nc-nd 2.0 license</a>.
-		   </p>
-		</footer>
+		<?php include "php/footer.php" ?>
 	
 </body>
 </html>
