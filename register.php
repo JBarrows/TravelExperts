@@ -33,25 +33,16 @@
 <!doctype="html">
 <html>
 <head>
-    <title>Travel Experts - Register</title>
-    <!-- <?php include "php/stdhead.php"; ?> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="css/style.css">
-	<link rel="icon" href="img/favicon.png" />
+    <title>Travel Experts - Account</title>
+    <?php include "php/stdhead.php"; ?>
 </head>
 
 <body>
-		<!--<header>-->
-		<?php include "php/header.php" ?>
-		<!-- <nav> -->
-		<?php include "php/nav.php" ?>
+    <!-- <header> -->
+    <?php include "php/header.php" ?>
+
+    <!-- <nav> -->
+    <?php include "php/nav.php" ?>
 		
 		<script>
 		function confirmReset(){
@@ -83,15 +74,16 @@
 			<div class= "row">
 				<div class= "col-8">
 					<div class= "row">
-						<div class= "col-sm-1 col"></div>
-						<div class= "col-sm-8 col-10 jumbotron">
-						<p style ="color : red; text-align:center;">
+						<div class= "col"></div>
+						<div class= "col-10 jumbotron">
 						<?php
 						if(isset($_SESSION['message'])){
+											echo "<p style ='color : red; text-align:center;'>";
 											echo $_SESSION['message'];
+											echo "</p>";
 										}
 						?>
-						</p>
+
 							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="register" method = "post">
 							<legend>Sign Up!</legend>
 							  <div class="form-row">
@@ -222,39 +214,40 @@
 					</div>
 				</div>
 				
-				<div class= "row">
-				<div class= "col-sm col"></div>
-				<div class= "col-sm-12 col-10 jumbotron">
-					<form action = "action.php" id ="login" method = "post">
-					<legend>Already a member, Sign In!</legend>
-					  <div class="form-row">
-						<div class="form-group col">
-						  <label for="inputEmail4">Email</label>
-						  <input type = "email" name = "CustEmail"  
-											   minlength = "1"
-											   class="form-control req"
-											   placeholder = "name@example.com"> 
+				<div class= "col-4">
+					<div class= "row">
+						<div class= "col"></div>
+						<div class= "col-10 jumbotron">
+							<form action = "action.php" id ="login" method = "post">
+							<legend>Sign In!</legend>
+							  <div class="form-row">
+								<div class="form-group col">
+								  <label for="inputEmail4">Email</label>
+								  <input type = "email" name = "CustEmail"  
+													   minlength = "1"
+													   class="form-control req"
+													   placeholder = "name@example.com"> 
+								</div>
+							  </div>
+							   <div class="form-row">
+								<div class="form-group col">
+								  <label for="inputPassword4">Password</label>
+								  <input type = "password" name = "CustPassword" 
+													   minlength = "1"
+													   class="form-control req" 
+													   placeholder = "">
+								</div>
+							   </div>
+							   <div class= "form-row">
+											<div class="form-group col">
+												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
+											</div>
+							   </div>
+							</form>
 						</div>
-						
-					  </div>
-					   <div class="form-row">
-						<div class="form-group col">
-						  <label for="inputPassword4">Password</label>
-						  <input type = "password" name = "CustPassword" 
-											   minlength = "1"
-											   class="form-control req" 
-											   placeholder = "">
-						</div>
-					   </div>
-					   <div class= "form-row">
-									<div class="form-group col">
-										<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
-									</div>
-					   </div>
-					</form>
+						<div class= "col"></div>
+					</div>
 				</div>
-				<div class= "col-sm col"></div>
-			</div>
 			</div>
 		</section>
 
