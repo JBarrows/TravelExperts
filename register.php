@@ -115,130 +115,184 @@
 		
 
 		<section style = "padding-top: 20px">
-		 
 			<div class= "row">
+				<div class= "col-8">
+					<div class= "row">
+						<div class= "col-sm-1 col"></div>
+						<div class= "col-sm-8 col-10 jumbotron">
+						<p style ="color : red; text-align:center;">
+						<?php
+						if(isset($_SESSION['message'])){
+											echo $_SESSION['message'];
+										}
+						?>
+						</p>
+							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="register" method = "post">
+							<legend>Sign Up!</legend>
+							  <div class="form-row">
+								<div class="form-group col-md-6">
+								  <label for="inputEmail4">First Name</label>
+								  <input type = "text" name = "CustFirstName"  
+													   minlength = "1"
+													   class="form-control req"
+													   title = "What is your name? "
+													   placeholder = "First Name"> 
+								</div>
+								<div class="form-group col-md-6">
+								  <label for="inputPassword4">Last Name</label>
+								  <input type = "text" name = "CustLastName" 
+													   minlength = "1"
+													   class="form-control req"
+													   title = "What is your name?" 
+													   placeholder = "Last Name">
+								</div>
+							  </div>
+							  <div class="form-group">
+								<label for="inputAddress">Address</label>
+								<input type = "text" name = "CustAddress" 
+													   minlength = "1"
+													   title = "Please enter your address"
+													   class="form-control req"
+													   placeholder = "1234 Main St">
+							  </div>
+							  
+							  <div class="form-row">
+								<div class="form-group col-md-3">
+								  <label for="inputCity">City</label>
+								  <input type="text" name= "CustCity"
+													 class="form-control req" id="inputCity">
+								</div>
+								
+								<div class="form-group col-md-4">
+								  <label for="inputState">State</label>
+								  <select id="inputState" class="form-control req" name ="CustProv">
+													<option selected="selected">Select a province</option>
+													<option value="AB">AB</option>
+													<option value="BC">BC</option>
+													<option value="MB">MB</option>
+													<option value="NB">NB</option>
+													<option value="NL">NL</option>
+													<option value="NS">NS</option>
+													<option value="ON">ON</option>
+													<option value="PE">PE</option>
+													<option value="QC">QC</option>
+													<option value="SK">SK</option>
+													<option value="NT">NT</option>
+													<option value="NU">NU</option>
+													<option value="YT">YT</option>
+								  </select>
+								</div>
+								
+								<div class="form-group col-md-2">
+								  <label for="inputZip">Zip</label>
+								  <input type = "text" name = "CustPostal" 
+													   pattern ="[AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy][0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz] ?[0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz][0-9] ?"
+													   maxlength = "7"
+													   class="form-control req"
+													   title = "Enter a valid Canadian post code, eg: T2X 1V2">
+								</div>
+								
+								<div class="form-group col-md-3">
+								  <label for="inputCountry">Country</label>
+								  <select class="form-control" name ="CustCountry">
+												<option value="Canada" selected="selected">Canada</option>
+												<option value="other">Other</option>
+												</select>
+								</div>
+							  </div>
+							 <div class="form-row">
+								<div class="form-group col-md-6">
+								  <label for="inputCity">Home Phone</label>
+								  <input type = "text" name = "CustHomePhone" 
+													   title = "Enter office phone"
+													   class="form-control req"
+													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
+								</div>
+								<div class="form-group col-md-6">
+								  <label for="inputCity">Business Phone</label>
+								   <input type = "text" name = "CustBusPhone" 
+													   title = "Enter office phone"
+													   class="form-control"
+													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
+								</div>
+							 </div>
+							 
+							 <div class="form-group">
+								<label for="inputAddress">Email</label>
+								<input type = "email" name = "CustEmail" 
+													   minlength = "1"
+													   title = "Please enter your address"
+													   class="form-control req"
+													   placeholder = "name@example.com">
+							 </div>
+							 
+							 <div class="form-row">
+								<div class="form-group col-md-6">
+								  <label for="inputPassword">Password</label>
+								  <input type = "text" 
+													   title = "enter a password"
+													   class="form-control req"
+													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
+								</div>
+								<div class="form-group col-md-6">
+								  <label for="inputCity">Confirm Password</label>
+								   <input type = "text" name = "CustPass" 
+													   title = "please confirm password"
+													   class="form-control"
+													   pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+								</div>
+							 </div>
+							 <div class= "form-row">
+											<div class="form-group col-md-6">
+												<input type = "submit" class = "btn btn-primary btn-block" value = "Register" onclick = "return confirmRegister()">
+											</div>
+											<div class= "col">
+												<input type = "reset" class = "btn btn-danger btn-block" value = "Reset" onclick = "return confirmReset()">
+											</div>
+							 </div>
+							 
+							</form>														
+						</div>
+						<div class= "col-sm col"></div>
+					</div>
+				</div>
+				
+				<div class= "row">
 				<div class= "col-sm col"></div>
-				<div class= "col-sm-6 col-10">
-				<p style ="color : red; text-align:center;">
-				<?php
-				if(isset($_SESSION['message'])){
-									echo $_SESSION['message'];
-								}
-				?>
-				</p>
-					<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="register" method = "post">
-					<legend>Sign Up!</legend>
+				<div class= "col-sm-12 col-10 jumbotron">
+					<form action = "action.php" id ="login" method = "post">
+					<legend>Already a member, Sign In!</legend>
 					  <div class="form-row">
-						<div class="form-group col-md-6">
-						  <label for="inputEmail4">First Name</label>
-						  <input type = "text" name = "CustFirstName"  
+						<div class="form-group col">
+						  <label for="inputEmail4">Email</label>
+						  <input type = "email" name = "CustEmail"  
 											   minlength = "1"
 											   class="form-control req"
-											   title = "What is your name? "
-											   placeholder = "First Name"> 
-						</div>
-						<div class="form-group col-md-6">
-						  <label for="inputPassword4">Last Name</label>
-						  <input type = "text" name = "CustLastName" 
-											   minlength = "1"
-											   class="form-control req"
-											   title = "What is your name?" 
-											   placeholder = "Last Name">
-						</div>
-					  </div>
-					  <div class="form-group">
-						<label for="inputAddress">Address</label>
-						<input type = "text" name = "CustAddress" 
-											   minlength = "1"
-											   title = "Please enter your address"
-											   class="form-control req"
-											   placeholder = "1234 Main St">
-					  </div>
-					  
-					  <div class="form-row">
-						<div class="form-group col-md-3">
-						  <label for="inputCity">City</label>
-						  <input type="text" name= "CustCity"
-											 class="form-control req" id="inputCity">
+											   placeholder = "name@example.com"> 
 						</div>
 						
-						<div class="form-group col-md-4">
-						  <label for="inputState">State</label>
-						  <select id="inputState" class="form-control req" name ="CustProv">
-											<option selected="selected">Select a province</option>
-											<option value="AB">AB</option>
-											<option value="BC">BC</option>
-											<option value="MB">MB</option>
-											<option value="NB">NB</option>
-											<option value="NL">NL</option>
-											<option value="NS">NS</option>
-											<option value="ON">ON</option>
-											<option value="PE">PE</option>
-											<option value="QC">QC</option>
-											<option value="SK">SK</option>
-											<option value="NT">NT</option>
-											<option value="NU">NU</option>
-											<option value="YT">YT</option>
-						  </select>
-						</div>
-						
-						<div class="form-group col-md-2">
-						  <label for="inputZip">Zip</label>
-						  <input type = "text" name = "CustPostal" 
-											   pattern ="[AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy][0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz] ?[0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz][0-9] ?"
-											   maxlength = "7"
-											   class="form-control req"
-											   title = "Enter a valid Canadian post code, eg: T2X 1V2">
-						</div>
-						
-						<div class="form-group col-md-3">
-						  <label for="inputCountry">Country</label>
-						  <select class="form-control" name ="CustCountry">
-										<option value="Canada" selected="selected">Canada</option>
-										<option value="other">Other</option>
-										</select>
-						</div>
 					  </div>
-					 <div class="form-row">
-						<div class="form-group col-md-6">
-						  <label for="inputCity">Home Phone</label>
-						  <input type = "text" name = "CustHomePhone" 
-											   title = "Enter office phone"
-											   class="form-control req"
-											   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
-						</div>
-						<div class="form-group col-md-6">
-						  <label for="inputCity">Business Phone</label>
-						   <input type = "text" name = "CustBusPhone" 
-											   title = "Enter office phone"
-											   class="form-control"
-											   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
-						</div>
-					 </div>
-					 
-					 <div class="form-group">
-						<label for="inputAddress">Email</label>
-						<input type = "email" name = "CustEmail" 
+					   <div class="form-row">
+						<div class="form-group col">
+						  <label for="inputPassword4">Password</label>
+						  <input type = "password" name = "CustPassword" 
 											   minlength = "1"
-											   title = "Please enter your address"
-											   class="form-control req"
-											   placeholder = "name@example.com">
-					 </div>
-					 <div class= "form-row">
-									<div class="form-group col-md-6">
-										<input type = "submit" class = "btn btn-primary btn-block" value = "Register" onclick = "return confirmRegister()">
+											   class="form-control req" 
+											   placeholder = "">
+						</div>
+					   </div>
+					   <div class= "form-row">
+									<div class="form-group col">
+										<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
 									</div>
-									<div class= "col">
-										<input type = "reset" class = "btn btn-danger btn-block" value = "Reset" onclick = "return confirmReset()">
-									</div>
-					 </div>
-					 
-					</form>														
+					   </div>
+					</form>
 				</div>
 				<div class= "col-sm col"></div>
 			</div>
+			</div>
 		</section>
-	</div>
+
 		
 		<!-- <footer> -->
 		<!-- <?php //include "php/footer.php" ?> -->
