@@ -220,6 +220,10 @@ div.artcontent {
 		transform: translateY(-50%);
 }
 
+.exipred {
+	color: red;
+}
+
 article.oddart div.artcontent {
 	right: auto;
 	left: 0;
