@@ -4,7 +4,27 @@
     PROJ-207-B  OOSD Spring 2018, SAIT
 ------------------------------------------------->
 <?php
-    $user = 143;
+    // Get login session information
+    if (isset($_SESSION['userid'])) {
+        $user = $_SESSION['userid'];
+    } else {
+        // Default to Gerard Biers #143
+        $user = 143;
+
+        // TODO: Redirect to registration page instead
+        // header("location: login.php?error=invalid+access");
+    }
+
+    // Check if a new package has been ordered
+    if (isset($_SESSION['orderpackageid']))
+    {
+        $packageid = $_SESSION['orderpackageid'];
+        // SELECT * FROM `packages_products_suppliers` WHERE `PackageId`=$packageid
+        // while ($prodSupId = FETCH_ASSOC(^^))
+            // SELECT * FROM `products_suppliers` WHERE `ProductSupplierId`=$prodSupId;
+            // $prodid = FETCH_ASSOC(^^)['ProductId']
+            // SELECT * FROM `products` WHERE `ProductId`=$prodid;
+    }
 
     $servername = "localhost";
 	$username = "root";
@@ -171,7 +191,7 @@ EOT;
 OPENBOOKING;
                 while ($details = $detailStmt->fetch(PDO::FETCH_ASSOC)) {
                     echo <<<TRIPDETAILS
-                            <div class='row'>
+                                <div class='row'>
                                 <p class='col-md-4 col-lg-3'><strong>{$details['Destination']}</strong></p>
                                 <p class='col-md-8 col-lg-9'>{$details['TripStart']} until {$details['TripEnd']}</p>
                             </div>
