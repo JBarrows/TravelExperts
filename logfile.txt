@@ -1,6 +1,0 @@
-Connection Successful.. Reading data for CustomerId=100...
-Packageorder found! Reading from packageID=1...
-Writing to 'Bookings' :
- INSERT INTO `bookings`(`BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`, `TripTypeId`, `PackageId`) VALUES ('2018-06-07', '247190', 1, 100, 'L', 2); 
-Writing to 'Bookingdetails' :
- INSERT INTO `bookingdetails`(`TripStart`, `TripEnd`, `Description`, `Destination`, `BasePrice`, `AgencyCommission`, `BookingId`) VALUES ('2016-12-12 00:00:00', '2016-12-20 00:00:00', '8 Day All Inclusive Hawaiian Vacation', 'Polynesian Paradise', 3000.0000, 310.0000, 1308); 
