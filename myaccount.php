@@ -4,17 +4,8 @@
     PROJ-207-B  OOSD Spring 2018, SAIT
 ------------------------------------------------->
 <?php
-<<<<<<< HEAD
-<<<<<<< HEAD
 	session_start();
-=======
-    session_start();
 
->>>>>>> 7541a9307051ed3ac917c4a78264608efd28ac2a
-=======
-    session_start();
-
->>>>>>> 7541a9307051ed3ac917c4a78264608efd28ac2a
     // Get login session information
     if (isset($_SESSION['userid'])) {
         $user = $_SESSION['userid'];

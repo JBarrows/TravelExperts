@@ -16,19 +16,9 @@
                     <a class='dropdown-item' href='signin.php'>Sign In</a>
                     <a class='dropdown-item' href='register.php'>Register</a>
                     <div class="dropdown-divider"></div>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <a class='dropdown-item' href='php/logout.php'>Sign Out</a>
                     <a class='dropdown-item' href='register.php'>My Account</a>
-=======
-                    <a class='dropdown-item' href='signin.php?logout=true'>Sign Out</a>
-                    <a class='dropdown-item' href='myaccount.php'>My Account</a>
->>>>>>> 7541a9307051ed3ac917c4a78264608efd28ac2a
-=======
-                    <a class='dropdown-item' href='signin.php?logout=true'>Sign Out</a>
-                    <a class='dropdown-item' href='myaccount.php'>My Account</a>
->>>>>>> 7541a9307051ed3ac917c4a78264608efd28ac2a
-                </div>
+
             </div>
         </div>
     </div>
