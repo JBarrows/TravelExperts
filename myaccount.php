@@ -10,22 +10,17 @@
     if (isset($_SESSION['userid'])) {
         $user = $_SESSION['userid'];
     } else {
-        // Default to Gerard Biers #143
-        $user = 143;
+        // // Default to Gerard Biers #143
+        // $user = 143;
 
-        // TODO: Redirect to registration page instead
-        // header("location: login.php?error=invalid+access");
+		// Redirects to login page
+		header("location: register.php?error=invalid+access");
     }
 
     // Check if a new package has been ordered
     if (isset($_SESSION['orderpackageid']))
     {
         $packageid = $_SESSION['orderpackageid'];
-        // SELECT * FROM `packages_products_suppliers` WHERE `PackageId`=$packageid
-        // while ($prodSupId = FETCH_ASSOC(^^))
-            // SELECT * FROM `products_suppliers` WHERE `ProductSupplierId`=$prodSupId;
-            // $prodid = FETCH_ASSOC(^^)['ProductId']
-            // SELECT * FROM `products` WHERE `ProductId`=$prodid;
     }
 
     $servername = "localhost";
@@ -149,6 +144,7 @@
             }
         ?>
 
+		<div class='jumbotron'>
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
         <!-- <tr id='namerow' class='hover-border'> -->
@@ -258,7 +254,8 @@
                 </div>
             </form>
         </div> <!-- </accordion> -->
-        <br />
+		</div> <!-- </Jumbotron> -->
+		<br />
         <!-----------------------
             My Orders
         ------------------------->
