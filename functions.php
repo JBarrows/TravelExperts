@@ -23,7 +23,7 @@ function insertData($record, $dataArray){
 		//first check if an email is already registered
 		$check = $dataArray['CustEmail'];
 		if($conn->query("SELECT CustEmail FROM $record WHERE CustEmail = '$check'")){
-			$_SESSION['message'] = 'Email already registered, please go to login';
+			$_SESSION['message'] = 'Email already registered, please go to login $check';
 			fwrite($logfile, "Email already registered nothing was inserted\n"); // for upkeeping :)
 		}
 		else {

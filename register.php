@@ -2,33 +2,45 @@
 	
 <?php
 	session_start();
-	/*if(isset($_SESSION['userid'])) {
-				header('Location: register_agent.php');
-	}*/	
-	
-	$processed_array = array(); //new array to store processed_array
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		function test_input($data) {
-		($data == '')? $data = NULL: $data = $data;
-		 $data = trim($data);
-		 $data = stripslashes($data);
-		 $data = htmlspecialchars($data);
-		 return $data;
-		}
-		
-		$processed_array = array(); //new array to store processed_array
-		
-		foreach($_POST as $key => $value){
-			$processed_array[$key] = test_input($value);
-		}
-	
-		include 'registration_login_functions.php';
-		
-		//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
-		array_merge($processed_array, array('AgentId'=>''));
-		//print_r($processed_array);
-		insertData($record = 'customers', $processed_array);
+	if(isset($_SESSION['userid'])) {
+				header('Location: myaccount.php');
 	}
+	
+	include 'registration_login_functions.php';
+	$processed_array = array(); //new array to store registration processed_array
+	
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		
+		//since were processing both the registration and login on the same page,  
+		//test for a unique name to the regiter form i.e CustFirstName to process registration module
+		if (in_array('CustFirstName',array_keys($_POST))){
+			
+			//function to test and validate registration input on the server
+			function test_input($data) {
+			($data == '')? $data = NULL: $data = $data;
+			 $data = trim($data);
+			 $data = stripslashes($data);
+			 $data = htmlspecialchars($data);
+			 return $data;
+			}
+			
+			foreach($_POST as $key => $value){
+				$processed_array[$key] = test_input($value);
+			}
+			
+			//only store an hash value of the password with salt for better security
+			$processed_array['CustPass'] = password_hash(trim($processed_array['CustPass']), PASSWORD_DEFAULT);
+
+			//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
+			array_merge($processed_array, array('AgentId'=>''));
+			//print_r($processed_array);
+			insertData($record = 'customers', $processed_array);
+		}
+		else{ //for login module
+		loginValidate($record = 'customers', $_POST);
+		}
+	}
+	
 ?>
 <!doctype="html">
 <html>
@@ -50,7 +62,7 @@
 				
 				if(confirm("Are you sure you want to reset?")){										//only reset if confirm returns true
 				
-					$("form input").removeAttr("required", "required");					//remove required attribute to reset
+					$("#register input").removeAttr("required", "required");					//remove required attribute to reset
 					return true;
 				}
 				else return false;
@@ -61,18 +73,60 @@
 			
 			if(confirm("Are you sure you want to register?")){
 				
-				$("form input.req").attr("required", "required");					//add required attribute to register
+				$("#register input.req").attr("required", "required");					//add required attribute to register
 				return true;
 			}
 			else return false;
+		}
+		function confirmLogin(){
+		//enforce a check if user clicks login without filling form
+		
+		$("#login input").attr("required", "required");					//add required attribute to login
+			return true;
+		return true;
 		}
 		</script>
 		
 		
 
-		<section style = "padding-top: 20px">
+		<div class= "container-fluid" style = "padding-top: 30px">
 			<div class= "row">
-				<div class= "col-8">
+				<div class= "col-sm order-sm-last">
+					<div class= "row">
+						<div class= "col"></div>
+						<div class= "col-10 jumbotron">
+							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="login" method = "post">
+							<legend>Sign In!</legend>
+							  <div class="form-row">
+								<div class="form-group col">
+								  <label for="inputEmail4">Email</label>
+								  <input type = "email" name = "CustEmail"  
+													   minlength = "1"
+													   class="form-control req"
+													   placeholder = "name@example.com"> 
+								</div>
+							  </div>
+							   <div class="form-row">
+								<div class="form-group col">
+								  <label for="inputPassword4">Password</label>
+								  <input type = "password" name = "CustPass" 
+													   minlength = "1"
+													   class="form-control req" 
+													   placeholder = "">
+								</div>
+							   </div>
+							   <div class= "form-row">
+											<div class="form-group col">
+												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
+											</div>
+							   </div>
+							</form>
+						</div>
+						<div class= "col"></div>
+					</div>
+				</div>
+				
+				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
 						<div class= "col-10 jumbotron">
@@ -81,6 +135,7 @@
 											echo "<p style ='color : red; text-align:center;'>";
 											echo $_SESSION['message'];
 											echo "</p>";
+											unset($_SESSION['message']);
 										}
 						?>
 
@@ -186,14 +241,14 @@
 							 <div class="form-row">
 								<div class="form-group col-md-6">
 								  <label for="inputPassword">Password</label>
-								  <input type = "text" 
+								  <input type = "password" 
 													   title = "enter a password"
 													   class="form-control req"
-													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
+													   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 								</div>
 								<div class="form-group col-md-6">
 								  <label for="inputCity">Confirm Password</label>
-								   <input type = "text" name = "CustPass" 
+								   <input type = "password" name = "CustPass" 
 													   title = "please confirm password"
 													   class="form-control"
 													   pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
@@ -210,46 +265,13 @@
 							 
 							</form>														
 						</div>
-						<div class= "col-sm col"></div>
+						<div class= "col"></div>
 					</div>
 				</div>
 				
-				<div class= "col-4">
-					<div class= "row">
-						<div class= "col"></div>
-						<div class= "col-10 jumbotron">
-							<form action = "action.php" id ="login" method = "post">
-							<legend>Sign In!</legend>
-							  <div class="form-row">
-								<div class="form-group col">
-								  <label for="inputEmail4">Email</label>
-								  <input type = "email" name = "CustEmail"  
-													   minlength = "1"
-													   class="form-control req"
-													   placeholder = "name@example.com"> 
-								</div>
-							  </div>
-							   <div class="form-row">
-								<div class="form-group col">
-								  <label for="inputPassword4">Password</label>
-								  <input type = "password" name = "CustPassword" 
-													   minlength = "1"
-													   class="form-control req" 
-													   placeholder = "">
-								</div>
-							   </div>
-							   <div class= "form-row">
-											<div class="form-group col">
-												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
-											</div>
-							   </div>
-							</form>
-						</div>
-						<div class= "col"></div>
-					</div>
-				</div>
+				
 			</div>
-		</section>
+		</div>
 
 		
 		<!-- <footer> -->
@@ -257,6 +279,3 @@
 	
 </body>
 </html>
-<?php
-unset($_SESSION['message']);
-?>
