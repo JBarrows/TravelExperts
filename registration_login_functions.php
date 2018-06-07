@@ -1,5 +1,4 @@
 <?php
-
 function insertData($record, $dataArray){
 	$servername = "localhost";
 	$username = "root";
@@ -22,8 +21,8 @@ function insertData($record, $dataArray){
 		
 		//first check if an email is already registered
 		$check = $dataArray['CustEmail'];
-		if($conn->query("SELECT CustEmail FROM $record WHERE CustEmail = '$check'")){
-			$_SESSION['message'] = 'Email already registered, please go to login';
+		if($conn->query("SELECT CustEmail FROM $record WHERE CustEmail = '$check'")->fetch()){
+			$_SESSION['message'] = 'Email ' .$check. ' is already registered, please login';
 			fwrite($logfile, "Email already registered nothing was inserted\n"); // for upkeeping :)
 		}
 		else {
@@ -34,7 +33,8 @@ function insertData($record, $dataArray){
 		//retrieve the last ID inserted so i can track my records
 		$lastID = $conn->lastInsertId();
 		fwrite($logfile, "New record to $record id: $lastID created successfully \n");
-		header('Location: account.php');
+		$_SESSION['userid'] = $conn->query("SELECT CustomerID FROM customers WHERE CustEmail = '$CustEmail'")->fetch();
+		header('Location: myaccount.php');
 		}
 		
 		
@@ -53,31 +53,33 @@ function loginValidate($record, $userData){
 	$dbusername = "root";
 	$dbpassword = "";
 	$dbname = "travelexperts";
-	foreach($userData as $key => $value){
-		echo $key;
-		$$key = $value; //creates the variables for username and password
-	}
-	
+
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
 		
-		echo "Connection Successful...<br> Validating $record user data...<br>";
+		//create a logfile to track errors in database insert
+		$logfile = fopen("logfile.txt", "w");
+		fwrite($logfile, "Connection Successful...<br> Validating $record user data...<br>\n");
 		
 		// set the PDO error mode to exception so it throws an exception when there is an error
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-		$sql = "SELECT password FROM agents WHERE username = '$username'";
-		$result = $conn->query($sql);
-		
-		//if result contains a value, the user was found.
-		//we then pull the password row and compare it with the entered password
+		$email =  $userData['CustEmail'];
+		$sql = "SELECT CustPass, CustomerID FROM customers WHERE CustEmail = '$email'";
+		$result = $conn->query($sql)->fetch(); //returns an array of the hashed password  and customer ID if CustEmail exists in db
+
 		if($result){
-			if((in_array($password, $result->fetch()))){ //fetch() returns an assoc array of the form [password] => value
-				echo 'user and pass correct';
+			// now test the user entered password using password_verify()
+			if(password_verify($userData['CustPass'] , $result['CustPass'])){
+				//if true, then write successful login to log file
+				fwrite($logfile, "$email logged in successfully...<br>\n");
+				//initiate a session with the user id
+				$_SESSION['userid'] = $result['CustomerID'];
+				header('Location: myaccount.php');
+				
 			}
-			else echo 'user correct, password incorrect';
+			else $_SESSION['message'] = 'Invalid Password!';
 		}
-		else echo 'username not found';
+		else $_SESSION['message'] = 'Invalid Username!';
 	}
 	catch(PDOException $e)
 		{
