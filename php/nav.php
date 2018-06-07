@@ -17,7 +17,7 @@
                     <a class='dropdown-item' href='register.php'>Register</a>
                     <div class="dropdown-divider"></div>
                     <a class='dropdown-item' href='php/logout.php'>Sign Out</a>
-                    <a class='dropdown-item' href='register.php'>My Account</a>
+                    <a class='dropdown-item' href='myaccount.php'>My Account</a>
 
             </div>
         </div>
