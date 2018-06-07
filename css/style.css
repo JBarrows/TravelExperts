@@ -130,41 +130,6 @@ nav.jnav .navbar-toggler:hover {
 	background-color: lightgray;
 }
 
-/*
-.menubtn {
-	color:black;
-	display:none;
-	border-width: 0;
-	background: transparent;
-	font-size: larger;
-	position: absolute;
-		right:10px;
-		top:10px;
-}
-.menubtn:hover { background: #ddd; }
-.menubtn:active {background: transparent; border: 0;}
-
-#menu {
-	display: block;
-	z-index:11;
-}
-
-#menu a {
-	box-sizing: border-box;
-	color: navy;
-	display: inline-block;
-	font-size: larger;
-	height:100%;
-	margin:0;
-	padding: 10px;
-	text-align: center;
-	text-decoration:none;
-}
-
-#menu a:hover {
-	background-color: powderblue;
-} */
-
 footer {
 	background-color: black;
 	color: white;
@@ -247,23 +212,8 @@ article.oddart div.artcontent {
 .artcontent button:hover {
 	box-shadow: 3px 3px 3px black;
 }
-/* button {
-	background: #b3d9ff;
-	border: 3px outset #cce6ff;
-	border-radius:7px;
-	color:#001a33;
-	font-weight:bold;
-	outline:none;
-	padding: 5px 10px;
-}
 
-button:hover {
-	background: #cce6ff;
-}
 
-button:active {
-	border: 3px inset #cce6ff;
-} */
 /****************************************
 ************* Assist classes ************
 *****************************************/
@@ -274,6 +224,7 @@ button:active {
 .border, .hover-border:hover { outline: 1px solid darkgray; }
 .bot-align { vertical-align: bottom; }
 .cursor-pointer { cursor:pointer; }
+.highlights:hover { background: lightgray; }
 .left-align { text-align: left; }
 .right-align { text-align: right; }
 .socialicons { font-size: 2em;}
