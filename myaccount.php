@@ -17,10 +17,22 @@
         // header("location: login.php?error=invalid+access");
     }
 
+    // Check if a new package has been ordered
+    if (isset($_SESSION['orderpackageid']))
+    {
+        $packageid = $_SESSION['orderpackageid'];
+        // SELECT * FROM `packages_products_suppliers` WHERE `PackageId`=$packageid
+        // while ($prodSupId = FETCH_ASSOC(^^))
+            // SELECT * FROM `products_suppliers` WHERE `ProductSupplierId`=$prodSupId;
+            // $prodid = FETCH_ASSOC(^^)['ProductId']
+            // SELECT * FROM `products` WHERE `ProductId`=$prodid;
+    }
+
     $servername = "localhost";
 	$username = "root";
 	$password = "";
 	$dbname = "travelexperts";
+
 
     /* Connect to Database */
 	try {
@@ -32,6 +44,7 @@
 
 		// set the PDO error mode to exception so it throws an exception when there is an error
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     } catch(PDOException $e) {
 		$errorString = $e->getMessage();
 		fwrite($logfile, "Error!: " .$errorString);

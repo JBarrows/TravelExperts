@@ -9,6 +9,7 @@
 	include 'registration_login_functions.php';
 	$processed_array = array(); //new array to store registration processed_array
 	
+	//test to see if request is sent using POST
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		
 		//since were processing both the registration and login on the same page,  
@@ -16,6 +17,7 @@
 		if (in_array('CustFirstName',array_keys($_POST))){
 			
 			//function to test and validate registration input on the server
+			//strip slashes, unnecessary whitespace and html special characters to prevent script injection
 			function test_input($data) {
 			($data == '')? $data = NULL: $data = $data;
 			 $data = trim($data);
@@ -33,7 +35,8 @@
 
 			//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
 			array_merge($processed_array, array('AgentId'=>''));
-			//print_r($processed_array);
+	
+			//finally insert the data to DB
 			insertData($record = 'customers', $processed_array);
 		}
 		else{ //for login module
