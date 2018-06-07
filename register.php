@@ -35,7 +35,7 @@
 
 			//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
 			array_merge($processed_array, array('AgentId'=>''));
-			
+	
 			//finally insert the data to DB
 			insertData($record = 'customers', $processed_array);
 		}

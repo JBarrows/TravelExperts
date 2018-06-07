@@ -1,4 +1,4 @@
-<footer class='container-fluid row'>
+<footer class='container-fluid row m-0'>
     <div class='text-md-left col socialicons'>
         <i class="fab fa-twitter-square"></i>
         <i class="fab fa-facebook-square"></i>
