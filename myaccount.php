@@ -41,26 +41,30 @@
     // Check if a new package is being ordered
     if (isset($_SESSION['orderpackageid']))
     {
+		fwrite($logfile, "Packageorder found! Reading from packageID=1...\n");
         try {
             $packageid = $_SESSION['orderpackageid'];
+			unset($_SESSION['orderpackageid']);
             $selectPackage = $conn->query("SELECT * FROM `packages` WHERE `PackageId`=$packageid");
             $package = $selectPackage->fetch(PDO::FETCH_ASSOC);
 
             // Create Booking values
             $values = array();
-            $values['BookingDate'] = "'".date()."'";
+            $values['BookingDate'] = "'".strftime('%F')."'";
             $values['BookingNo'] = "'".strval(mt_rand(1235,254123)."'");
             $values['TravelerCount'] = 1;
             $values['CustomerId'] = $user;
-            $values['TripType'] = "'L'";
+            $values['TripTypeId'] = "'L'";
             $values['PackageId'] = $packageid;
 
             // Insert Booking
             $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
-            $valStr = implode($values);
+            $valStr = implode(', ', $values);
             $sql = "INSERT INTO `bookings`({$attrStr}) VALUES ({$valStr});";
+			fwrite($logfile, "Writing to 'Bookings' :\n $sql \n");
             $conn->exec($sql);
-            
+
+
             // Make sure to get the booking ID!
             $bookId = $conn->lastInsertId();
 
@@ -76,8 +80,9 @@
 
             // Insert BookingDetail
             $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
-            $valStr = implode($values);
+            $valStr = implode(', ', $values);
             $sql = "INSERT INTO `bookingdetails`({$attrStr}) VALUES ({$valStr});";
+			fwrite($logfile, "Writing to 'Bookingdetails' :\n $sql \n");
             $conn->exec($sql);
 
             // Display Message
@@ -88,7 +93,7 @@
             fwrite($logfile, "Error!: " .$errorString);
             echo $errorString;
         }
-    }
+    } else {fwrite($logfile, "Packageorder not found. ignoring...\n");}
 
     /* Fetch Customer Information */
     try {
@@ -97,13 +102,15 @@
         $custInfo = $result->fetch(PDO::FETCH_ASSOC);
 
         /* Fetch booking information */
-        $bookingStmt = $conn->query("SELECT * FROM `bookings` WHERE `CustomerId`=$user;");
+        $bookingStmt = $conn->query("SELECT * FROM `bookings` WHERE `CustomerId`=$user ORDER BY `BookingDate` DESC;");
 
     } catch(PDOException $e) {
 		$errorString = $e->getMessage();
 		fwrite($logfile, "Error!: " .$errorString);
         echo $errorString;
 	}
+
+	session_destroy();
 ?>
 
 <!doctype="html">
@@ -120,8 +127,9 @@
     <!-- <nav> -->
     <?php include "php/nav.php" ?>
 
-<div class="container">
-    <section>
+
+<section>
+	<div class="container">
         <?php
             if (isset($message)) {
                 echo "<div class='alert alert-success'>$message</div>";
@@ -131,23 +139,28 @@
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
         <!-- <tr id='namerow' class='hover-border'> -->
-        <div id='accordion'>
-            <div class='row'>
-                <button class='btn btn-link' data-toggle='collapse' data-target='#nameform'>
+        <div id='accordion' class='col-sm-10 col-md-7 col-lg-6'>
+            <div class='row hover-border'>
+                <button class='btn btn-link col-1' data-toggle='collapse' data-target='#nameform'>
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <b>Name: </b>
-                <?php echo $custInfo['CustFirstName'] . ' ' . $custInfo['CustLastName']; ?>
+				<div class='col-3 col-lg-2 text-right'>
+                	<b>Name: </b>
+				</div>
+				<div class='col'>
+                	<?php echo $custInfo['CustFirstName'] . ' ' . $custInfo['CustLastName']; ?>
+				</div>
             </div>
+
             <form class='collapse' data-parent='#accordion' id='nameform' name='nameform' action="">
                 <div class='form-row'>
-                    <div class="form-group col-sm-4 col-md-3">
+                    <div class="form-group col-md-6">
                         <label for='fname'>First Name</label>
                         <?php
                             echo "<input type='text' class='form-control' id='fname' name='fname' value='".$custInfo['CustFirstName']."' />";
                         ?>
                     </div>
-                    <div class="form-group col-sm-4 col-md-3">
+                    <div class="form-group col-md-6">
                         <label for='lname'>Last Name</label>
                         <?php echo "<input type='text' class='form-control' id='fname' name='lname' value='".$custInfo['CustLastName']."' />"; ?>
                     </div>
@@ -156,23 +169,29 @@
                     <input type="submit" class='btn btn-default' name="namesubmit" value="Submit" />
                 </div>
             </form>
-            <div class='row'>
-                <button class='btn btn-link' data-toggle='collapse' data-target='#phoneform'>
+
+            <div class='row mt-2 hover-border'>
+                <button class='btn btn-link col-1' data-toggle='collapse' data-target='#phoneform'>
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <strong>Phone: </strong>
-                <?php
-                    echo $custInfo['CustHomePhone'] . ' (Home)<br>' .
-                        $custInfo['CustBusPhone'] . ' (Business)';
-                ?>
+				<div class='col-3 col-lg-2 text-right'>
+                	<strong>Phone: </strong>
+				</div>
+				<div class='col'>
+	                <?php
+	                    echo $custInfo['CustHomePhone'] . ' (Home)<br>' .
+	                        $custInfo['CustBusPhone'] . ' (Business)';
+	                ?>
+				</div>
             </div>
-            <form class='collapse' data-parent='#accordion' id='phoneform' name='phoneform'>
+
+			<form class='collapse' data-parent='#accordion' id='phoneform' name='phoneform'>
                 <div class='form-row'>
-                    <div class='form-group col-sm-4 col-md-3'>
+                    <div class='form-group col-md-6'>
                         <label for='hphone'>Home</label>
                         <?php echo "<input type='text' class='form-control' id='hphone' name='hphone' value='".$custInfo['CustHomePhone']."' />"; ?>
                     </div>
-                    <div class=' form-group col-sm-4 col-md-3'>
+                    <div class=' form-group col-md-6'>
                         <label for='bphone'>Business</label>
                         <?php echo "<input type='text' class='form-control' id='bphone' name='bphone' value='".$custInfo['CustBusPhone']."' />"; ?>
                     </div>
@@ -181,36 +200,42 @@
                     <input type="submit" class='btn btn-default' name="phonesubmit" value="Submit" />
                 </div>
             </form>
-            <div class='row'>
-                <button class='btn btn-link' data-toggle='collapse' data-target='#addrform'>
+
+            <div class='row  mt-2 hover-border'>
+                <button class='btn btn-link col-1' data-toggle='collapse' data-target='#addrform'>
                     <i class="fas fa-pencil-alt"></i>
                 </button>
-                <strong>Address:</strong>
-                <?php
-                    echo $custInfo['CustAddress'] . '<br>' .
-                        $custInfo['CustCity'] . ', ' . $custInfo['CustProv'] . '<br>' .
-                        $custInfo['CustPostal'];
-                ?>
+				<div class='col-3 col-lg-2 text-right'>
+	                <strong>Address:</strong>
+				</div>
+				<div class='col'>
+	                <?php
+	                    echo $custInfo['CustAddress'] . '<br>' .
+	                        $custInfo['CustCity'] . ', ' . $custInfo['CustProv'] . '<br>' .
+	                        $custInfo['CustPostal'];
+	                ?>
+				</div>
             </div>
+
             <form class='collapse' data-parent='#accordion' id='addrform' name='addrform'>
                 <div class='form-row'>
-                    <div class='form-group col-sm-8 col-md-6'>
+                    <div class='form-group col'>
                         <label for='streetaddr'>Street</label>
                         <?php echo "<input type='text' class='form-control' id='streetaddr' name='streetaddr' value='".$custInfo['CustAddress']."'/>"; ?>
                     </div>
                 </div>
                 <div class='form-row'>
-                    <div class='form-group col-sm-4 col-md-3'>
+                    <div class='form-group col-md-6'>
                         <label for='city'>City</label>
                         <?php echo "<input type='text' class='form-control' id='city' name='city' value='".$custInfo['CustCity']."'/>"; ?>
                     </div>
-                    <div class='form-group col-sm-4 col-md-3'>
+                    <div class='form-group col-md-6'>
                         <label for='prov'>Province</label>
                         <?php echo "<input type='text' class='form-control' id='prov' name='prov' value='".$custInfo['CustProv']."'/>"; ?>
                     </div>
                 </div>
                 <div class='form-row'>
-                    <div class='form-group col-sm-4 col-md-3'>
+                    <div class='form-group col-md-6'>
                         <label for='postcode'>Postal Code</label>
                         <?php echo "<input type='text' class='form-control' id='postcode' name='postcode' value='".$custInfo['CustPostal']."' />"; ?>
                     </div>
@@ -225,13 +250,14 @@
             My Orders
         ------------------------->
         <h2>My Orders</h2>
+
         <?php
             if ($bookingStmt == false) {
                 echo "<p>(No orders Found)</p>";
             }
             echo <<<EOT
-                <div class='row'>
-                    <p class='col-3 col-md-2 col-xl-2'>Booking ID</p>
+                <div class='row font-weight-bold'>
+                    <p class='col-3 col-md-2 col-xl-2 text-right'>Booking ID</p>
                     <p class='col-9 col-md-10 col-lg-7'>Information</p>
                 </div>
 EOT;
@@ -240,7 +266,7 @@ EOT;
                 $detailStmt = $conn->query("SELECT * FROM `bookingdetails` WHERE `BookingId`={$booking['BookingId']};");
                 $nthRow = ($nthRow == "") ? "bg-2" : ""; //Set the background color for odd numbered rows
                 echo <<<OPENBOOKING
-                    <div class='row {$nthRow}'>
+                    <div class='row {$nthRow} py-2'>
                         <div class='text-right col-3 col-md-2 col-lg-2'>{$booking['BookingNo']}</div>
                         <div class='col-9 col-md-10 col-lg-7'>
 OPENBOOKING;
@@ -274,10 +300,8 @@ CLOSEBOOKING;
             }
         ?>
 
-        <!-- TODO: Sign in button can be removed once php is active -->
-        <button onclick="window.location.href = 'signin.html'">Sign In</button>
-    </section>
-</div>
+	</div> <!-- </container-fluid> -->
+</section>
 
     <!-- <footer> -->
     <?php include "php/footer.php" ?>
