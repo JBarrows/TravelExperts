@@ -117,8 +117,6 @@
 		fwrite($logfile, "Error!: " .$errorString);
         echo $errorString;
 	}
-
-	//session_destroy();
 ?>
 
 <!doctype="html">
@@ -144,7 +142,7 @@
             }
         ?>
 
-		<div class='jumbotron'>
+		<div class='jumbotron py-4'>
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
         <!-- <tr id='namerow' class='hover-border'> -->
@@ -188,8 +186,10 @@
 				</div>
 				<div class='col'>
 	                <?php
-	                    echo $custInfo['CustHomePhone'] . ' (Home)<br>' .
-	                        $custInfo['CustBusPhone'] . ' (Business)';
+	                    echo $custInfo['CustHomePhone'] . ' (Home)<br>';
+	                    if ($custInfo['CustBusPhone'] != "") {
+							echo $custInfo['CustBusPhone'] . ' (Business)';
+						}
 	                ?>
 				</div>
             </div>
@@ -200,6 +200,7 @@
                         <label for='hphone'>Home</label>
                         <?php echo "<input type='text' class='form-control' id='hphone' name='hphone' value='".$custInfo['CustHomePhone']."' />"; ?>
                     </div>
+
                     <div class=' form-group col-md-6'>
                         <label for='bphone'>Business</label>
                         <?php echo "<input type='text' class='form-control' id='bphone' name='bphone' value='".$custInfo['CustBusPhone']."' />"; ?>
