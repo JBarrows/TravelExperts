@@ -74,7 +74,7 @@
 
             // Create BookingDetail values
             $values = array();
-            $values['TripStart'] = "'".$package['PkgStartDate']."'";
+            $values['TripStart'] = "'". $package['PkgStartDate'] ."'";
             $values['TripEnd'] = "'".$package['PkgEndDate']."'";
             $values['Description'] = "'".$package['PkgDesc']."'";
             $values['Destination'] = "'".$package['PkgName']."'";
@@ -279,22 +279,20 @@ EOT;
                         <div class='col-9 col-md-10 col-lg-7'>
 OPENBOOKING;
                 while ($details = $detailStmt->fetch(PDO::FETCH_ASSOC)) {
-                    echo <<<TRIPDETAILS
-                                <div class='row'>
+                    echo    "<div class='row'>
                                 <p class='col-md-4 col-lg-3'><strong>{$details['Destination']}</strong></p>
-                                <p class='col-md-8 col-lg-9'>{$details['TripStart']} until {$details['TripEnd']}</p>
+                                <p class='col-md-8 col-lg-9'>".date('d-m-Y', strtotime($details['TripStart']))
+								." until ".date('d-m-Y', strtotime($details['TripEnd']))."</p>
                             </div>
                             <div class='row'>
                                 <p class='col'>{$details['Description']}</p>
-                            </div>
-TRIPDETAILS;
+                            </div>";
                 }
 
-                echo <<<CLOSEBOOKING
-                            <div class='row'>
+                echo "<div class='row'>
                                 <div class='col-4 col-lg-3'>
-                                    <b>Date Placed</b><br>{$booking['BookingDate']}
-                                </div>
+                                    <b>Date Placed</b><br>".date('d-m-Y', strtotime($booking['BookingDate']))
+                                ."</div>
                                 <div class='col-4 col-lg-3'>
                                     <b>Travelers</b><br>{$booking['TravelerCount']}
                                 </div>
@@ -303,9 +301,8 @@ TRIPDETAILS;
                                 </div>
                             </div>
                         </div>
-                    </div>
-CLOSEBOOKING;
-            }
+                    </div>";
+				}
         ?>
 
 	</div> <!-- </container-fluid> -->
