@@ -31,7 +31,7 @@
             echo "<b><span style='$style'>Start Date:</b> $row[2]</span><br>";
             echo "<b>End Date:</b> $row[3]<br>";
             echo "<b>Package Cost:</b> $row[5]<br>";
-            echo "<form action='$redirect?orderpackageid=$row[0]' method='post'>
+		  echo "<form action='$redirect?orderpackageid=$row[0]&packagename=$row[1]' method='post'>
             <input id='orderButton' type='submit' class='btn btn-info btn-md' value='Order Now!'>
             </form>";
           }
