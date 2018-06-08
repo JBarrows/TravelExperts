@@ -27,13 +27,13 @@
 			<div class="artcontent">
 				<h2>Breathtaking Packages</h2>
 				<p>
-					We offer over 3(!) travel packages to suit your needs.
+					We offer a variety travel packages to suit your needs.
                     From urban conference visits to tropical all-inclusives, we've got you covered.
                     Trips range from weekend stays to extended getaways to fit your busy schedule.
                     See our full listing to see where Travel Experts can take <i>you</i>.
 				</p>
 				<br>
-				<button onclick="window.location.href='packages.html'">View All Travel Packages</button>
+				<button class='btn btn-info' onclick="window.location.href='packages.php'">View All Travel Packages</button>
 			</div>
 		</article>
 		<article class="oddart">
@@ -46,7 +46,7 @@
                     Get in touch with one of our offices and we will set you up with one of our best, or contact our agents directly.
 				</p>
 				<br>
-				<button onclick="window.location.href='contact.html'">Call Now</button>
+				<button class='btn btn-info' onclick="window.location.href='contact.php'">Call Now</button>
 			</div>
 		</article>
 		<article>
@@ -58,7 +58,7 @@
                     Android and iOS apps are coming soon, so you can take your bookings with you on the go!
 				</p>
 				<br>
-				<button onclick="window.location.href='register.html'">Register Today</button>
+				<button class='btn btn-info' onclick="window.location.href='register.php'">Register Today</button>
 			</div>
 		</article>
     </section>
