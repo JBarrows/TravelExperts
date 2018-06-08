@@ -1,6 +1,5 @@
-
-
 <?php
+
 	session_start();
 	if(isset($_SESSION['userid'])) {
 				header('Location: myaccount.php');
@@ -55,7 +54,19 @@
 <body>
     <!-- <header> -->
     <?php include "php/header.php" ?>
-
+	
+	<!-- display a message if user is booking a package-->
+	<div class='container'>
+	<?php
+    if (isset($_SESSION['packagename'])) {
+        {
+			$booking = $_SESSION['packagename'];
+            echo "<div class='alert alert-success' text-align='center' role='alert'>You are currently booking the $booking </div>";
+			unset($_SESSION['packagename']);
+        }
+    }
+	?>
+	</div>
     <!-- <nav> -->
     <?php $active = 'register'; include "php/nav.php" ?>
 
@@ -72,14 +83,16 @@
 		}
 		function confirmRegister(){
 			//enforce a check if user clicks register without filling form
+
+			//add required attribute to register
+			$("#register input.req").attr("required", "required");	
 			//only true if user clicks true on checkbox and required attribute has been set to input forms
 
 			if(confirm("Are you sure you want to register?")){
 
 				$("#register input.req").attr("required", "required");					//add required attribute to register
 				return true;
-			}
-			else return false;
+			return true;
 		}
 		function confirmLogin(){
 		//enforce a check if user clicks login without filling form
