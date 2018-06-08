@@ -1,6 +1,4 @@
-
-	
-<?php
+	<?php
 	session_start();
 	if(isset($_SESSION['userid'])) {
 				header('Location: myaccount.php');
@@ -97,7 +95,7 @@
 				<div class= "col-sm order-sm-last">
 					<div class= "row">
 						<div class= "col"></div>
-						<div class= "col-10 jumbotron">
+						<div class= "col-10 jumbotron py-4">
 							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="login" method = "post">
 							<legend>Sign In!</legend>
 							  <div class="form-row">
@@ -118,6 +116,14 @@
 													   placeholder = "">
 								</div>
 							   </div>
+							   <?php
+									if(isset($_SESSION['loginMessage'])){
+														echo "<p style ='color : red; text-align:center;'>";
+														echo $_SESSION['loginMessage'];
+														echo "</p>";
+														unset($_SESSION['loginMessage']);
+													}
+								?>
 							   <div class= "form-row">
 											<div class="form-group col">
 												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
@@ -132,13 +138,13 @@
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
-						<div class= "col-10 jumbotron">
+						<div class= "col-10 jumbotron py-4">
 						<?php
-						if(isset($_SESSION['message'])){
+						if(isset($_SESSION['registrationMessage'])){
 											echo "<p style ='color : red; text-align:center;'>";
-											echo $_SESSION['message'];
+											echo $_SESSION['registrationMessage'];
 											echo "</p>";
-											unset($_SESSION['message']);
+											unset($_SESSION['registrationMessage']);
 										}
 						?>
 

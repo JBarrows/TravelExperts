@@ -118,7 +118,7 @@
         echo $errorString;
 	}
 
-	session_destroy();
+	//session_destroy();
 ?>
 
 <!doctype="html">
