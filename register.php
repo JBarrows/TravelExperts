@@ -263,7 +263,7 @@
 								  <input type = "password"
 													   title = "enter a password"
 													   class="form-control req"
-													   minlength = "1"
+													   minlength = "1">
 								</div>
 								<div class="form-group col-md-6">
 								  <label for="inputCity">Confirm Password</label>
