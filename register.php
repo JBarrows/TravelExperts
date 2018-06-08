@@ -132,13 +132,13 @@
 								</div>
 							   </div>
 							   <?php
-							     if(isset($_SESSION['loginMessage'])){
--														echo "<p style ='color : red; text-align:center;'>";
--														echo $_SESSION['loginMessage'];
--														echo "</p>";
--														unset($_SESSION['loginMessage']);
--								  }
--							   ?>
+							     if(isset($_SESSION['loginMessage'])) {
+														echo "<p style ='color : red; text-align:center;'>";
+														echo $_SESSION['loginMessage'];
+														echo "</p>";
+														unset($_SESSION['loginMessage']);
+								  }
+							   ?>
 							   <div class= "form-row">
 											<div class="form-group col">
 												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
