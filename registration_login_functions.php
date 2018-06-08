@@ -22,7 +22,7 @@ function insertData($record, $dataArray){
 		//first check if an email is already registered
 		$check = $dataArray['CustEmail'];
 		if($conn->query("SELECT CustEmail FROM $record WHERE CustEmail = '$check'")->fetch()){
-			$_SESSION['message'] = 'Email ' .$check. ' is already registered, please login';
+			$_SESSION['registrationMessage'] = 'Email ' .$check. ' is already registered, please login';
 			fwrite($logfile, "Email already registered nothing was inserted\n"); // for upkeeping :)
 		}
 		else {
@@ -33,7 +33,7 @@ function insertData($record, $dataArray){
 		//retrieve the last ID inserted so i can track my records
 		$lastID = $conn->lastInsertId();
 		fwrite($logfile, "New record to $record id: $lastID created successfully \n");
-		$_SESSION['userid'] = $conn->query("SELECT CustomerID FROM customers WHERE CustEmail = '$CustEmail'")->fetch();
+		$_SESSION['userid'] = $lastID;
 		header('Location: myaccount.php');
 		}
 		
@@ -77,9 +77,9 @@ function loginValidate($record, $userData){
 				header('Location: myaccount.php');
 				
 			}
-			else $_SESSION['message'] = 'Invalid Password!';
+			else $_SESSION['loginMessage'] = 'Invalid Password, please try again!';
 		}
-		else $_SESSION['message'] = 'Invalid Username!';
+		else $_SESSION['loginMessage'] = 'Invalid Email!';
 	}
 	catch(PDOException $e)
 		{

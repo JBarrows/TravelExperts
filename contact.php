@@ -32,7 +32,7 @@
 		<?php
 		$result = mysqli_query($con, "SELECT * FROM agencies");
 			while($row = mysqli_fetch_array($result)){
-			echo "<div class='jumbotron'>";
+			echo "<div class='jumbotron py-4'>";
 			echo "<div class='row' style='margin:auto'>";
 			echo "<div class='col'>";
 			echo "<h2 style='color:blue'>{$row['AgncyCity']}</h2>
@@ -46,10 +46,10 @@
 				$agencyID = $row['AgencyId'];
 			echo "<div class='col-10' style='margin:auto'>";
 				  $resultAgents = mysqli_query($con, "SELECT * FROM agents where AgencyID=$agencyID");
-				echo "<div class='row'>";
+				echo "<div class='row' style='margin:auto'>";
 						while($rowAgents = mysqli_fetch_array($resultAgents)){
 						//echo "<div class='col-4'>";
-						echo "<div class='card text-right' style='width: 21rem; margin: 5px;'>";
+						echo "<div class='card text-right' style='width: 21rem; margin: 0.5%;'>";
 						echo  "<div class='card-body'>";
 						echo "<h5 class='card-title'>{$rowAgents['AgtFirstName']} {$rowAgents['AgtMiddleInitial']} 		   	{$rowAgents['AgtLastName']}</h5>";
 						echo "<h6 class='card-subtitle mb-2 text-muted'> {$rowAgents['AgtPosition']}</h6>";
