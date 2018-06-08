@@ -117,7 +117,6 @@
 		fwrite($logfile, "Error!: " .$errorString);
         echo $errorString;
 	}
-
 ?>
 
 <!doctype="html">
