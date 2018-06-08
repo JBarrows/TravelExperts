@@ -5,11 +5,11 @@ body {
 	margin: 0 0 150px;		
 }
 *{
-	box-sizing: border-box;	
+	box-sizing: border-box;
 }
 
 html{
-  position:relative; 
+  position:relative;
   min-height: 100%;
 }
 
@@ -212,14 +212,14 @@ article.oddart div.artcontent {
 	 margin: 0 4vw;
 }
 
-.artcontent button {
+/* .artcontent button {
 	font-weight: bold;
 	padding: 15px;
-}
+} */
 
-.artcontent button:hover {
+/* .artcontent button:hover {
 	box-shadow: 3px 3px 3px black;
-}
+} */
 
 
 /****************************************
