@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Connection Successful.. Reading data for CustomerId=151...
 Packageorder not found. ignoring...
 =======
@@ -11,3 +12,7 @@ Writing to 'Bookingdetails' :
  INSERT INTO `bookingdetails`(`TripStart`, `TripEnd`, `Description`, `Destination`, `BasePrice`, `AgencyCommission`, `BookingId`) VALUES ('2016-12-12 00:00:00', '2016-12-20 00:00:00', '8 Day All Inclusive Hawaiian Vacation', 'Polynesian Paradise', 3000.0000, 310.0000, 1308); 
 
 >>>>>>> 472024f9738dc048dc5ae3279aa475ad419064da
+=======
+Connection Successful.. Reading data for CustomerId=153...
+Packageorder not found. ignoring...
+>>>>>>> Joel

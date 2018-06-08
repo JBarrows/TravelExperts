@@ -1,19 +1,25 @@
+<<<<<<< HEAD
 	<?php
+=======
+
+
+<?php
+>>>>>>> Joel
 	session_start();
 	if(isset($_SESSION['userid'])) {
 				header('Location: myaccount.php');
 	}
-	
+
 	include 'registration_login_functions.php';
 	$processed_array = array(); //new array to store registration processed_array
-	
+
 	//test to see if request is sent using POST
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		
-		//since were processing both the registration and login on the same page,  
+
+		//since were processing both the registration and login on the same page,
 		//test for a unique name to the regiter form i.e CustFirstName to process registration module
 		if (in_array('CustFirstName',array_keys($_POST))){
-			
+
 			//function to test and validate registration input on the server
 			//strip slashes, unnecessary whitespace and html special characters to prevent script injection
 			function test_input($data) {
@@ -23,17 +29,17 @@
 			 $data = htmlspecialchars($data);
 			 return $data;
 			}
-			
+
 			foreach($_POST as $key => $value){
 				$processed_array[$key] = test_input($value);
 			}
-			
+
 			//only store an hash value of the password with salt for better security
 			$processed_array['CustPass'] = password_hash(trim($processed_array['CustPass']), PASSWORD_DEFAULT);
 
 			//populate agentID to empty string as our infrastucture doest allow for agentIDs to be inputted yet
 			array_merge($processed_array, array('AgentId'=>''));
-	
+
 			//finally insert the data to DB
 			insertData($record = 'customers', $processed_array);
 		}
@@ -41,7 +47,7 @@
 		loginValidate($record = 'customers', $_POST);
 		}
 	}
-	
+
 ?>
 <!doctype="html">
 <html>
@@ -55,14 +61,14 @@
     <?php include "php/header.php" ?>
 
     <!-- <nav> -->
-    <?php include "php/nav.php" ?>
-		
+    <?php $active = 'register'; include "php/nav.php" ?>
+
 		<script>
 		function confirmReset(){
 				//reset forms to default value by removing required and other added attributes
-				
+
 				if(confirm("Are you sure you want to reset?")){										//only reset if confirm returns true
-				
+
 					$("#register input").removeAttr("required", "required");					//remove required attribute to reset
 					return true;
 				}
@@ -71,9 +77,9 @@
 		function confirmRegister(){
 			//enforce a check if user clicks register without filling form
 			//only true if user clicks true on checkbox and required attribute has been set to input forms
-			
+
 			if(confirm("Are you sure you want to register?")){
-				
+
 				$("#register input.req").attr("required", "required");					//add required attribute to register
 				return true;
 			}
@@ -81,14 +87,14 @@
 		}
 		function confirmLogin(){
 		//enforce a check if user clicks login without filling form
-		
+
 		$("#login input").attr("required", "required");					//add required attribute to login
 			return true;
 		return true;
 		}
 		</script>
-		
-		
+
+
 
 		<div class= "container-fluid" style = "padding-top: 30px">
 			<div class= "row">
@@ -101,18 +107,18 @@
 							  <div class="form-row">
 								<div class="form-group col">
 								  <label for="inputEmail4">Email</label>
-								  <input type = "email" name = "CustEmail"  
+								  <input type = "email" name = "CustEmail"
 													   minlength = "1"
 													   class="form-control req"
-													   placeholder = "name@example.com"> 
+													   placeholder = "name@example.com">
 								</div>
 							  </div>
 							   <div class="form-row">
 								<div class="form-group col">
 								  <label for="inputPassword4">Password</label>
-								  <input type = "password" name = "CustPass" 
+								  <input type = "password" name = "CustPass"
 													   minlength = "1"
-													   class="form-control req" 
+													   class="form-control req"
 													   placeholder = "">
 								</div>
 							   </div>
@@ -134,7 +140,7 @@
 						<div class= "col"></div>
 					</div>
 				</div>
-				
+
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
@@ -153,37 +159,37 @@
 							  <div class="form-row">
 								<div class="form-group col-md-6">
 								  <label for="inputEmail4">First Name</label>
-								  <input type = "text" name = "CustFirstName"  
+								  <input type = "text" name = "CustFirstName"
 													   minlength = "1"
 													   class="form-control req"
 													   title = "What is your name? "
-													   placeholder = "First Name"> 
+													   placeholder = "First Name">
 								</div>
 								<div class="form-group col-md-6">
 								  <label for="inputPassword4">Last Name</label>
-								  <input type = "text" name = "CustLastName" 
+								  <input type = "text" name = "CustLastName"
 													   minlength = "1"
 													   class="form-control req"
-													   title = "What is your name?" 
+													   title = "What is your name?"
 													   placeholder = "Last Name">
 								</div>
 							  </div>
 							  <div class="form-group">
 								<label for="inputAddress">Address</label>
-								<input type = "text" name = "CustAddress" 
+								<input type = "text" name = "CustAddress"
 													   minlength = "1"
 													   title = "Please enter your address"
 													   class="form-control req"
 													   placeholder = "1234 Main St">
 							  </div>
-							  
+
 							  <div class="form-row">
 								<div class="form-group col-md-3">
 								  <label for="inputCity">City</label>
 								  <input type="text" name= "CustCity"
 													 class="form-control req" id="inputCity">
 								</div>
-								
+
 								<div class="form-group col-md-4">
 								  <label for="inputState">State</label>
 								  <select id="inputState" class="form-control req" name ="CustProv">
@@ -203,16 +209,16 @@
 													<option value="YT">YT</option>
 								  </select>
 								</div>
-								
+
 								<div class="form-group col-md-2">
 								  <label for="inputZip">Zip</label>
-								  <input type = "text" name = "CustPostal" 
+								  <input type = "text" name = "CustPostal"
 													   pattern ="[AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy][0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz] ?[0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz][0-9] ?"
 													   maxlength = "7"
 													   class="form-control req"
 													   title = "Enter a valid Canadian post code, eg: T2X 1V2">
 								</div>
-								
+
 								<div class="form-group col-md-3">
 								  <label for="inputCountry">Country</label>
 								  <select class="form-control" name ="CustCountry">
@@ -224,40 +230,40 @@
 							 <div class="form-row">
 								<div class="form-group col-md-6">
 								  <label for="inputCity">Home Phone</label>
-								  <input type = "text" name = "CustHomePhone" 
+								  <input type = "text" name = "CustHomePhone"
 													   title = "Enter office phone"
 													   class="form-control req"
 													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
 								</div>
 								<div class="form-group col-md-6">
 								  <label for="inputCity">Business Phone</label>
-								   <input type = "text" name = "CustBusPhone" 
+								   <input type = "text" name = "CustBusPhone"
 													   title = "Enter office phone"
 													   class="form-control"
 													   pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}">
 								</div>
 							 </div>
-							 
+
 							 <div class="form-group">
 								<label for="inputAddress">Email</label>
-								<input type = "email" name = "CustEmail" 
+								<input type = "email" name = "CustEmail"
 													   minlength = "1"
 													   title = "Please enter your address"
 													   class="form-control req"
 													   placeholder = "name@example.com">
 							 </div>
-							 
+
 							 <div class="form-row">
 								<div class="form-group col-md-6">
 								  <label for="inputPassword">Password</label>
-								  <input type = "password" 
+								  <input type = "password"
 													   title = "enter a password"
 													   class="form-control req"
 													   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 								</div>
 								<div class="form-group col-md-6">
 								  <label for="inputCity">Confirm Password</label>
-								   <input type = "password" name = "CustPass" 
+								   <input type = "password" name = "CustPass"
 													   title = "please confirm password"
 													   class="form-control"
 													   pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
@@ -271,20 +277,20 @@
 												<input type = "reset" class = "btn btn-danger btn-block" value = "Reset" onclick = "return confirmReset()">
 											</div>
 							 </div>
-							 
-							</form>														
+
+							</form>
 						</div>
 						<div class= "col"></div>
 					</div>
 				</div>
-				
-				
+
+
 			</div>
 		</div>
 
-		
+
 		<!-- <footer> -->
 		<?php include "php/footer.php" ?>
-	
+
 </body>
 </html>

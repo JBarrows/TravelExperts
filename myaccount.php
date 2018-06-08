@@ -10,9 +10,6 @@
     if (isset($_SESSION['userid'])) {
         $user = $_SESSION['userid'];
     } else {
-        // // Default to Gerard Biers #143
-        // $user = 143;
-
 		// Redirects to login page
 		header("location: register.php?error=invalid+access");
     }
@@ -21,6 +18,7 @@
     if (isset($_SESSION['orderpackageid']))
     {
         $packageid = $_SESSION['orderpackageid'];
+		unset($_SESSION['orderpackageid']);
     }
 
     $servername = "localhost";
@@ -47,12 +45,10 @@
 	}
 
     // Check if a new package is being ordered
-    if (isset($_SESSION['orderpackageid']))
+    if (isset($packageid))
     {
 		fwrite($logfile, "Packageorder found! Reading from packageID=1...\n");
         try {
-            $packageid = $_SESSION['orderpackageid'];
-			unset($_SESSION['orderpackageid']);
             $selectPackage = $conn->query("SELECT * FROM `packages` WHERE `PackageId`=$packageid");
             $package = $selectPackage->fetch(PDO::FETCH_ASSOC);
 
@@ -68,7 +64,7 @@
             // Insert Booking
             $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
             $valStr = implode(', ', $values);
-            $sql = "INSERT INTO `bookings`({$attrStr}) VALUES ({$valStr});";
+            $sql = "INSERT INTO `bookings`($attrStr) VALUES ($valStr);";
 			fwrite($logfile, "Writing to 'Bookings' :\n $sql \n");
             $conn->exec($sql);
 
@@ -118,7 +114,10 @@
         echo $errorString;
 	}
 
+<<<<<<< HEAD
 	//session_destroy();
+=======
+>>>>>>> Joel
 ?>
 
 <!doctype="html">
@@ -133,7 +132,7 @@
     <?php include "php/header.php" ?>
 
     <!-- <nav> -->
-    <?php include "php/nav.php" ?>
+    <?php $active="myaccount"; include "php/nav.php"; ?>
 
 
 <section>
@@ -144,7 +143,7 @@
             }
         ?>
 
-		<div class='jumbotron'>
+		<div class='jumbotron py-4'>
         <h2>My Information</h2>
         <!-- TODO: This information should be read from the database -->
         <!-- <tr id='namerow' class='hover-border'> -->
@@ -188,8 +187,10 @@
 				</div>
 				<div class='col'>
 	                <?php
-	                    echo $custInfo['CustHomePhone'] . ' (Home)<br>' .
-	                        $custInfo['CustBusPhone'] . ' (Business)';
+	                    echo $custInfo['CustHomePhone'] . ' (Home)<br>';
+	                    if ($custInfo['CustBusPhone'] != "") {
+							echo $custInfo['CustBusPhone'] . ' (Business)';
+						}
 	                ?>
 				</div>
             </div>
@@ -200,6 +201,7 @@
                         <label for='hphone'>Home</label>
                         <?php echo "<input type='text' class='form-control' id='hphone' name='hphone' value='".$custInfo['CustHomePhone']."' />"; ?>
                     </div>
+
                     <div class=' form-group col-md-6'>
                         <label for='bphone'>Business</label>
                         <?php echo "<input type='text' class='form-control' id='bphone' name='bphone' value='".$custInfo['CustBusPhone']."' />"; ?>

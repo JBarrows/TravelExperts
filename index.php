@@ -19,7 +19,7 @@
     <?php include "php/header.php" ?>
 
     <!-- <nav> -->
-    <?php include "php/nav.php" ?>
+    <?php $active="index"; include "php/nav.php"; ?>
 
     <section>
 		<article>
