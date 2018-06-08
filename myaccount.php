@@ -114,10 +114,6 @@
         echo $errorString;
 	}
 
-<<<<<<< HEAD
-	//session_destroy();
-=======
->>>>>>> Joel
 ?>
 
 <!doctype="html">

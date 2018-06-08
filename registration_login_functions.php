@@ -79,7 +79,7 @@ function loginValidate($record, $userData){
 			}
 			else $_SESSION['loginMessage'] = 'Invalid Password, please try again!';
 		}
-		else $_SESSION['loginMessage'] = 'Invalid Email!';
+		else $_SESSION['loginMessage'] = 'Email does not seem to be registered';
 	}
 	catch(PDOException $e)
 		{
