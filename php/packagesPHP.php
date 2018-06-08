@@ -2,7 +2,7 @@
     function getPackageDetails($packageId)
     {
       $date = date('Y-m-d');
-      $dbc = mysqli_connect("127.0.0.1","admin","pass","travelexperts");
+      $dbc = mysqli_connect("localhost","root","","travelexperts");
       $redirect = 'order.php';
       if(!$dbc)
       {

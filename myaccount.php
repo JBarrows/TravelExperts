@@ -10,9 +10,6 @@
     if (isset($_SESSION['userid'])) {
         $user = $_SESSION['userid'];
     } else {
-        // // Default to Gerard Biers #143
-        // $user = 143;
-
 		// Redirects to login page
 		header("location: register.php?error=invalid+access");
     }
@@ -21,6 +18,7 @@
     if (isset($_SESSION['orderpackageid']))
     {
         $packageid = $_SESSION['orderpackageid'];
+		unset($_SESSION['orderpackageid']);
     }
 
     $servername = "localhost";
@@ -47,12 +45,10 @@
 	}
 
     // Check if a new package is being ordered
-    if (isset($_SESSION['orderpackageid']))
+    if (isset($packageid))
     {
 		fwrite($logfile, "Packageorder found! Reading from packageID=1...\n");
         try {
-            $packageid = $_SESSION['orderpackageid'];
-			unset($_SESSION['orderpackageid']);
             $selectPackage = $conn->query("SELECT * FROM `packages` WHERE `PackageId`=$packageid");
             $package = $selectPackage->fetch(PDO::FETCH_ASSOC);
 
@@ -68,7 +64,7 @@
             // Insert Booking
             $attrStr = '`' . implode('`, `', array_keys($values)) . '`';
             $valStr = implode(', ', $values);
-            $sql = "INSERT INTO `bookings`({$attrStr}) VALUES ({$valStr});";
+            $sql = "INSERT INTO `bookings`($attrStr) VALUES ($valStr);";
 			fwrite($logfile, "Writing to 'Bookings' :\n $sql \n");
             $conn->exec($sql);
 
@@ -132,7 +128,7 @@
     <?php include "php/header.php" ?>
 
     <!-- <nav> -->
-    <?php include "php/nav.php" ?>
+    <?php $active="myaccount"; include "php/nav.php"; ?>
 
 
 <section>

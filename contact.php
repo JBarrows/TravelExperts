@@ -13,35 +13,35 @@
     <?php include "php/nav.php" ?>
 
     <!-- <nav> -->
-    <!-- <?php include "php/nav.php" ?> -->
-    
+    <!-- <?php $active = 'contact'; include "php/nav.php" ?> -->
+
 	<div class = 'container-fluid'>
 		<section>
-		
+
 			<h2 align="center">Contact Us</h2>
-			
+
 		<?php
 			$con = mysqli_connect("localhost","root","");//connect server
 			if (!$con){
 			die('Could not connect: ' . mysqli_error());
 			}
-			
+
 			mysqli_select_db($con, "travelexperts");//select data from travelexperts
 		?>
-		
-		<?php		
+
+		<?php
 		$result = mysqli_query($con, "SELECT * FROM agencies");
 			while($row = mysqli_fetch_array($result)){
 			echo "<div class='jumbotron'>";
 			echo "<div class='row' style='margin:auto'>";
 			echo "<div class='col'>";
 			echo "<h2 style='color:blue'>{$row['AgncyCity']}</h2>
-			
+
 				  <b>Phone:  </b>  {$row['AgncyPhone']}</br>
 				  <b>Fax:  </b>{$row['AgncyFax']}</br>
-				
+
 				  <b>Address:  </b>{$row['AgncyAddress']} {$row['AgncyCity']} {$row['AgncyProv']}, {$row['AgncyPostal']}</br>";
-				 // map 
+				 // map
 			echo "</div>";
 				$agencyID = $row['AgencyId'];
 			echo "<div class='col-10' style='margin:auto'>";
@@ -69,10 +69,10 @@
 
 		</table>
 		</div>
-		</section> 
+		</section>
 	</div>
 
-   
+
 
     <!-- <footer> -->
 		<?php include "php/footer.php" ?>
