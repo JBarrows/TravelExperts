@@ -155,8 +155,8 @@
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
+						<div class= "col-10 jumbotron py-4">
 						<?php
-						if(isset($_SESSION['registrationmessage'])){
 						if(isset($_SESSION['registrationMessage'])){
 											echo "<p style ='color : red; text-align:center;'>";
 											echo $_SESSION['registrationMessage'];
