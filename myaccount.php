@@ -113,10 +113,6 @@
 		fwrite($logfile, "Error!: " .$errorString);
         echo $errorString;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 278e2ae24072bc5d737f4582535863544b656b31
 ?>
 
 <!doctype="html">
