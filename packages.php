@@ -6,65 +6,17 @@ to allow for easier navigation through the image sliders
 <html>
 <head>
     <title>Travel Experts - Travel Packages</title>
-    <!-- <?php include "php/stdhead.php"; ?> -->
-    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/favicon.png" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/solid.css" integrity="sha384-Rw5qeepMFvJVEZdSo1nDQD5B6wX0m7c5Z/pLNvjkB14W6Yki1hKbSEQaX9ffUbWe" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/fontawesome.css" integrity="sha384-GVa9GOgVQgOk+TNYXu7S/InPTfSDTtBalSgkgqQ7sCik56N9ztlkoTr2f/T44oKV" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <?php include "php/stdhead.php"; ?>
     <?php include "php/packagesPHP.php";?>
 
 </head>
 <body>
     <!-- <header> -->
-    <!-- <?php //include "php/header.php" ?> -->
-    <header>
-        <a href="index.php">
-            <img id="headlogo" src="img/logo.png" />
-            <p id="headtitle">Travel Experts</p>
-        </a>
-    </header>
+    <?php include "php/header.php" ?>
+
     <!-- <nav> -->
-    <!-- <?php// include "php/nav.php" ?> -->
-    <nav>
-        <button class="menubtn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div id="menu">
-            <a href="index.html">Home</a>
-            <a href="packages.html">Packages</a>
-            <a href="contact.html">Contact</a>
-            <a href="register.html" class="action">Register</a>
-            <a href="signin.html" class="action" style="background:navy;">Sign in</a>
-            <!-- <a href="signin.php" class="action">Sign out</a> -->
-        </div>
+    <?php $active='packages'; include "php/nav.php" ?>
 
-        <script>  /// Opens/Closes menu in narrow views
-            var menuOpen = false;
-
-            function toggleMenu() {
-                var menu = document.getElementById("menu");
-                if (!menu) {return;}
-
-                if (menuOpen) {
-                    //Close menu
-                    menu.style.display = null;
-                } else {
-                    //Open menu
-                    menu.style.display = "block";
-                }
-                menuOpen = !menuOpen;
-            }
-        </script>
-    </nav>
     <section>
         <h2>Packages</h2>
         <br>
@@ -182,14 +134,6 @@ ensure you add a class identifier (SlidesN) to the slideId array and add a new s
     <br><br>
 
     <!-- <footer> -->
-    <!-- <?php include "php/footer.php" ?> -->
-    <footer>
-      <p>&copy;SAIT, Joel Barr, and Travel Agents</p>
-      <p>
-          "<a href="https://flic.kr/p/cTsU15" target="_blank">Sunrise view from a plane</a>"
-          by <a href="https://www.flickr.com/photos/frankfarm/" target="_blank">Frank Farm</a>
-          is used under the <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">cc by-nc-nd 2.0 license</a>.
-       </p>
-    </footer>
+    <?php include "php/footer.php" ?>
 </body>
 </html>
