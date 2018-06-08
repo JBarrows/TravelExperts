@@ -54,7 +54,7 @@
 <body>
     <!-- <header> -->
     <?php include "php/header.php" ?>
-	
+
 	<!-- display a message if user is booking a package-->
 	<div class='container'>
 	<?php
@@ -85,7 +85,7 @@
 			//enforce a check if user clicks register without filling form
 
 			//add required attribute to register
-			$("#register input.req").attr("required", "required");	
+			$("#register input.req").attr("required", "required");
 			//only true if user clicks true on checkbox and required attribute has been set to input forms
 
 			if(confirm("Are you sure you want to register?")){
@@ -110,7 +110,7 @@
 				<div class= "col-sm order-sm-last">
 					<div class= "row">
 						<div class= "col"></div>
-						<div class= "col-10 jumbotron">
+						<div class= "col-10 jumbotron py-4">
 							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="login" method = "post">
 							<legend>Sign In!</legend>
 							  <div class="form-row">
@@ -131,6 +131,14 @@
 													   placeholder = "">
 								</div>
 							   </div>
+							   <?php
+							     if(isset($_SESSION['loginMessage'])){
+-														echo "<p style ='color : red; text-align:center;'>";
+-														echo $_SESSION['loginMessage'];
+-														echo "</p>";
+-														unset($_SESSION['loginMessage']);
+-								  }
+-							   ?>
 							   <div class= "form-row">
 											<div class="form-group col">
 												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
@@ -145,13 +153,13 @@
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
-						<div class= "col-10 jumbotron">
+						<div class= "col-10 jumbotron  py-4">
 						<?php
-						if(isset($_SESSION['message'])){
+						if(isset($_SESSION['registrationmessage'])){
 											echo "<p style ='color : red; text-align:center;'>";
-											echo $_SESSION['message'];
+											echo $_SESSION['registrationmessage'];
 											echo "</p>";
-											unset($_SESSION['message']);
+											unset($_SESSION['registrationmessage']);
 										}
 						?>
 
