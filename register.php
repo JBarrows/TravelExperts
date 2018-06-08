@@ -84,23 +84,25 @@
 		function confirmRegister(){
 			//enforce a check if user clicks register without filling form
 
-			//add required attribute to register
+			//add required attribute to compulsory fields in registration form
 			$("#register input.req").attr("required", "required");
-			//only true if user clicks true on checkbox and required attribute has been set to input forms
-
-			if(confirm("Are you sure you want to register?")){
-
-				$("#register input.req").attr("required", "required");					//add required attribute to register
-				return true;
-			return true;
 		}
 		function confirmLogin(){
 		//enforce a check if user clicks login without filling form
+			//add required attribute to login
+			$("#login input").attr("required", "required");
 
-		$("#login input").attr("required", "required");					//add required attribute to login
-			return true;
-		return true;
 		}
+		function showHidePassword(){
+
+			$("#eye").toggleClass("fa-eye-slash fa-eye", "addOrRemove");
+
+			//fancy tenary operator to switch between password and text
+			$("#eye").hasClass("fa-eye-slash") ? $("#password").attr("type", "password") : $("#password").attr("type", "text");
+
+
+		}
+
 		</script>
 
 
@@ -153,13 +155,13 @@
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
-						<div class= "col-10 jumbotron  py-4">
 						<?php
 						if(isset($_SESSION['registrationmessage'])){
+						if(isset($_SESSION['registrationMessage'])){
 											echo "<p style ='color : red; text-align:center;'>";
-											echo $_SESSION['registrationmessage'];
+											echo $_SESSION['registrationMessage'];
 											echo "</p>";
-											unset($_SESSION['registrationmessage']);
+											unset($_SESSION['registrationMessage']);
 										}
 						?>
 
@@ -253,29 +255,26 @@
 								</div>
 							 </div>
 
-							 <div class="form-group">
-								<label for="inputAddress">Email</label>
-								<input type = "email" name = "CustEmail"
+
+							 <div class="form-row">
+								<div class="form-group col-md-6">
+								  <label for="inputAddress">Email</label>
+									<input type = "email" name = "CustEmail"
 													   minlength = "1"
 													   title = "Please enter your address"
 													   class="form-control req"
 													   placeholder = "name@example.com">
-							 </div>
-
-							 <div class="form-row">
-								<div class="form-group col-md-6">
-								  <label for="inputPassword">Password</label>
-								  <input type = "password"
-													   title = "enter a password"
-													   class="form-control req"
-													   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
 								</div>
 								<div class="form-group col-md-6">
-								  <label for="inputCity">Confirm Password</label>
-								   <input type = "password" name = "CustPass"
-													   title = "please confirm password"
-													   class="form-control"
-													   pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+								  <label for="inputPassword">Password</label>
+								  <div class="input-group mb-3">
+									  <input class="form-control" type="password" id = "password" name = "CustPass"
+													   title = "Must be at least 6 characters"
+													   minlength = "6" aria-describedby="basic-addon2">
+									  <div class="input-group-append">
+										 <button class="btn btn-primary" type="button" onclick = "return showHidePassword()"><i class="fa fa-eye-slash"  id="eye" aria-hidden="true"></i></button>
+									  </div>
+								  </div>
 								</div>
 							 </div>
 							 <div class= "form-row">
