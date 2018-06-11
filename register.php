@@ -1,13 +1,17 @@
-<?php
+<!--Olaoluwa Adesanya-->
 
+<?php
+	//start or check for a session
 	session_start();
 	if(isset($_SESSION['userid'])) {
+				//redirect to myaccount page if user is logged
 				header('Location: myaccount.php');
 	}
 
 	include 'registration_login_functions.php';
 	$processed_array = array(); //new array to store registration processed_array
-
+	
+	//the next couple of blocks process the registration/login forms
 	//test to see if request is sent using POST
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -69,7 +73,7 @@
 	</div>
     <!-- <nav> -->
     <?php $active = 'register'; include "php/nav.php" ?>
-
+	<!-- the next couple of blocks are javascript for the dynamic page-->
 		<script>
 		function confirmReset(){
 				//reset forms to default value by removing required and other added attributes
@@ -106,7 +110,7 @@
 		</script>
 
 
-
+		<!--Begin forms-->
 		<div class= "container-fluid" style = "padding-top: 30px">
 			<div class= "row">
 				<div class= "col-sm order-sm-last">
@@ -134,7 +138,8 @@
 								</div>
 							   </div>
 							   <?php
-							     if(isset($_SESSION['loginMessage'])) {
+							   //display error message form login validation
+									if(isset($_SESSION['loginMessage'])){
 														echo "<p style ='color : red; text-align:center;'>";
 														echo $_SESSION['loginMessage'];
 														echo "</p>";
@@ -152,11 +157,13 @@
 					</div>
 				</div>
 
+				<!--registration form begins-->
 				<div class= "col-sm-8 order-sm-first">
 					<div class= "row">
 						<div class= "col"></div>
 						<div class= "col-10 jumbotron py-4">
 						<?php
+						//display error message form registration
 						if(isset($_SESSION['registrationMessage'])){
 											echo "<p style ='color : red; text-align:center;'>";
 											echo $_SESSION['registrationMessage'];
@@ -164,7 +171,7 @@
 											unset($_SESSION['registrationMessage']);
 										}
 						?>
-
+							<!--send form elements to the same page-->
 							<form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" id ="register" method = "post">
 							<legend>Sign Up!</legend>
 							  <div class="form-row">
