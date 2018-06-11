@@ -1,9 +1,13 @@
+<!--Programmer: Jonah Aubin  /Joel Barr (helped with the date formatting)
+This php is a simple database connector for the packages page to allow our website to obtain data and display it to the page
+from the database. We pass through a session variable packageId to obtain which package was selected from the user side-->
 <?php
     function getPackageDetails($packageId)
     {
       $date = date('Y-m-d');
       $dbc = mysqli_connect("localhost","root","","travelexperts");
       $redirect = 'order.php';
+      //Connection to database
       if(!$dbc)
       {
         echo "Error Number:".mysqli_connect_errno().PHP_EOL;
@@ -26,7 +30,6 @@
             {
               $style = '';
             }
-            //echo "<div class='jumbotron py-3'>";
             echo "<b>Package Name:</b> $row[1]<br>";
             echo "<b>Package Description:</b> $row[4]<br>";
             echo "<b><span style='$style'>Start Date:</b> ".date('d-m-Y', strtotime($row[2]))."</span><br>";
