@@ -21,10 +21,10 @@
     <!-- <nav> -->
     <?php $active="index"; include "php/nav.php"; ?>
 
-    <section>
-		<article>
-			<img src="img/beach.jpeg" />
-			<div class="artcontent">
+    <section class='container-fluid no-gutters px-0'>
+		<article class='row no-gutters'>
+			<img class='col-md-4' style='object-fit:cover;' src="img/beach.jpeg" />
+			<div class="col-md-8 artcontent">
 				<h2>Breathtaking Packages</h2>
 				<p>
 					We offer a variety travel packages to suit your needs.
@@ -36,9 +36,9 @@
 				<button class='btn btn-info' onclick="window.location.href='packages.php'">View All Travel Packages</button>
 			</div>
 		</article>
-		<article class="oddart">
-			<img src="img/agents.jpg" />
-			<div class="artcontent">
+		<article class="row no-gutters bg-2">
+			<img class='col-md-4 order-last' style='object-fit:cover;' src="img/agents.jpg" />
+			<div class="col-md-8 order-first artcontent">
 				<h2>Top Agents</h2>
 				<p>
 					Our experienced team of travel agents is ready to help.
@@ -49,9 +49,9 @@
 				<button class='btn btn-info' onclick="window.location.href='contact.php'">Call Now</button>
 			</div>
 		</article>
-		<article>
-			<img src="img/Sunrise_view_from_a_plane.jpg" />
-			<div class="artcontent">
+		<article class='row no-gutters'>
+			<img class='col-md-4' style='object-fit:cover;' src="img/Sunrise_view_from_a_plane.jpg" />
+			<div class="col-md-8 artcontent">
 				<h2>Track Your Bookings</h2>
 				<p>
                     Our fancy-schmancy web app lets you track your itineraries and bookings online.
