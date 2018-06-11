@@ -10,7 +10,7 @@
 
 	include 'registration_login_functions.php';
 	$processed_array = array(); //new array to store registration processed_array
-	
+
 	//the next couple of blocks process the registration/login forms
 	//test to see if request is sent using POST
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {

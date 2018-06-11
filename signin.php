@@ -1,3 +1,11 @@
+<!--------------------------------------------------------------
+    Created on 2018/05/31 by Joel Barr and Olaoluwa Adesanya
+    for Travel Experts Threaded Project
+    PROJ-207-B  OOSD Spring 2018, SAIT
+    This page is no longer used as the login has been merged
+    with the registration page.
+--------------------------------------------------------------->
+
 <!doctype="html">
 <html>
 <head>
@@ -59,7 +67,7 @@
 	<script>
 	function confirmLogin(){
 		//enforce a check if user clicks login without filling form
-		
+
 		$("#login input").attr("required", "required");					//add required attribute to login
 			return true;
 		return true;
@@ -76,19 +84,19 @@
 					  <div class="form-row">
 						<div class="form-group col">
 						  <label for="inputEmail4">Email</label>
-						  <input type = "email" name = "CustEmail"  
+						  <input type = "email" name = "CustEmail"
 											   minlength = "1"
 											   class="form-control req"
-											   placeholder = "name@example.com"> 
+											   placeholder = "name@example.com">
 						</div>
-						
+
 					  </div>
 					   <div class="form-row">
 						<div class="form-group col">
 						  <label for="inputPassword4">Password</label>
-						  <input type = "password" name = "CustPassword" 
+						  <input type = "password" name = "CustPassword"
 											   minlength = "1"
-											   class="form-control req" 
+											   class="form-control req"
 											   placeholder = "">
 						</div>
 					   </div>

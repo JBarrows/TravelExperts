@@ -1,11 +1,14 @@
-/*Most of the CSS was written by Joel Barr JB, Olaoluwa Adesanya OA just 
-pitched in with the footer sticking to the bottom of the page and some other tidbits*/
+/**************************************************************************
+Most of the CSS was written by Joel Barr JB, Olaoluwa Adesanya (OA) just
+pitched in with the footer sticking to the bottom of the page and some
+other parts marked below
+**************************************************************************/
 
 body {
 	background-color:white;
 	padding:0; /*OA*/
 	font-family: 'Poppins', sans-serif;
-	margin: 0 0 150px;	/*OA*/	
+	margin: 0 0 150px;	/*OA*/
 }
 
 
@@ -13,7 +16,7 @@ body {
 	box-sizing: border-box;
 }
 
-html{
+html{ /*OA*/
   position:relative;
   min-height: 100%;
 }
@@ -172,14 +175,6 @@ article {
 	position: relative;
 }
 
-/* article img {
-	position:absolute;
-	height:100%;
-	width: 30%;
-	right:auto;
-	left:0;
-} */
-
 div.artcontent {
 	padding-top: 50px;
 }
@@ -197,19 +192,6 @@ div.artcontent {
 	 margin: 0 4vw;
 }
 
-<<<<<<< HEAD
-/* .artcontent button {
-	font-weight: bold;
-	padding: 15px;
-} */
-
-/* .artcontent button:hover {
-	box-shadow: 3px 3px 3px black;
-} */
-
-
-=======
->>>>>>> af95375c2be31c7f9ed8a82dd93441b172782bca
 /****************************************
 ************* Assist classes ************
 *****************************************/

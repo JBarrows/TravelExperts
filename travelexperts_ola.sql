@@ -1,3 +1,6 @@
+-- Exported from a modified version of the Travel Experts
+-- database by Olaoluwa Adesanya
+--
 -- phpMyAdmin SQL Dump
 -- version 4.8.0.1
 -- https://www.phpmyadmin.net/
