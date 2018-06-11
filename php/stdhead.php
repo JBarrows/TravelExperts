@@ -1,3 +1,12 @@
+<?php /**********************************************
+        Created on 2018/05/31 by Joel Barr
+        for Travel Experts Threaded Project
+        PROJ-207-B  OOSD Spring 2018, SAIT
+
+        This file contains style sheet and script
+        links that are used throughout the website
+        and should be consistent across pages
+****************************************************/?>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="img/favicon.png" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poppins" rel="stylesheet">

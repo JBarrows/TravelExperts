@@ -1,3 +1,9 @@
+<?php /**********************************************
+        Created on 2018/05/31 by Joel Barr
+        for Travel Experts Threaded Project
+        PROJ-207-B  OOSD Spring 2018, SAIT
+****************************************************/?>
+
 <header>
     <a href="index.php">
         <img class='headerlogo' id="headlogo" src="img/logo.png" />

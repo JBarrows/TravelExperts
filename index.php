@@ -1,3 +1,8 @@
+<!------------------------------------------------
+    Created on 2018/05/31 by Joel Barr
+    for Travel Experts Threaded Project
+    PROJ-207-B  OOSD Spring 2018, SAIT
+------------------------------------------------->
 <!doctype="html" />
 <html>
 <head>
@@ -10,9 +15,10 @@
     <div class="titlebg">
         <div class="titlebox">
                 <img src="img/logo.png">
-	            <h1>Travel Experts</h1>
+                <h1>Travel Experts</h1>
                 <p class="subtitle">we get you where you want to be</p>
-		   </div>
+                <button class='btn btn-primary btn-lg' onclick="window.location.href='packages.php'">Browse Packages</button>
+	   </div>
 	</div>
 
     <!-- <header> -->
@@ -54,7 +60,7 @@
 			<div class="col-md-8 artcontent">
 				<h2>Track Your Bookings</h2>
 				<p>
-                    Our fancy-schmancy web app lets you track your itineraries and bookings online.
+                    Our state-of-the-art web app lets you track your travel itineraries and bookings online.
                     Android and iOS apps are coming soon, so you can take your bookings with you on the go!
 				</p>
 				<br>

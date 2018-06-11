@@ -1,8 +1,15 @@
 <?php
+/***************************************************
+        Created on 2018/05/31 by Joel Barr
+        for Travel Experts Threaded Project
+        PROJ-207-B  OOSD Spring 2018, SAIT
+        The Nav element changes depending on whether or not a user is signed in
+****************************************************/
     if (session_status() == PHP_SESSION_NONE) { session_start(); }
-    if (!isset($active)) { $active = ''; }
+    if (!isset($active)) { $active = ''; } // Denotes the active page
     // Get login session information
     if (isset($_SESSION['userid'])) {
+        // Display My Account and Logout options if logged in
         $myacctActive = $active == 'myaccount' ? 'active' : '';
         $acctItm = "<div class='nav-item dropdown'>
                         <a class='nav-link dropdown-toggle cursor-pointer $myacctActive' role='button' data-toggle='dropdown'>
@@ -15,6 +22,7 @@
                         </div>
                     </div>";
     } else {
+        // Display Login option if not currently signed in
         $acctItm = "<a class='nav-link cursor-pointer ".($active == 'register' ? 'active' : '')."' role='button' href='register.php'>
                         Sign In
                     </a>";
