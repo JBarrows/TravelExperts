@@ -85,24 +85,24 @@
 			//enforce a check if user clicks register without filling form
 
 			//add required attribute to compulsory fields in registration form
-			$("#register input.req").attr("required", "required");	
+			$("#register input.req").attr("required", "required");
 		}
 		function confirmLogin(){
 		//enforce a check if user clicks login without filling form
 			//add required attribute to login
-			$("#login input").attr("required", "required");					
+			$("#login input").attr("required", "required");
 
 		}
 		function showHidePassword(){
-			
+
 			$("#eye").toggleClass("fa-eye-slash fa-eye", "addOrRemove");
-			
+
 			//fancy tenary operator to switch between password and text
 			$("#eye").hasClass("fa-eye-slash") ? $("#password").attr("type", "password") : $("#password").attr("type", "text");
 
 
 		}
-		
+
 		</script>
 
 
@@ -134,13 +134,13 @@
 								</div>
 							   </div>
 							   <?php
-									if(isset($_SESSION['loginMessage'])){
+							     if(isset($_SESSION['loginMessage'])) {
 														echo "<p style ='color : red; text-align:center;'>";
 														echo $_SESSION['loginMessage'];
 														echo "</p>";
 														unset($_SESSION['loginMessage']);
-													}
-								?>
+								  }
+							   ?>
 							   <div class= "form-row">
 											<div class="form-group col">
 												<input type = "submit" class = "btn btn-primary btn-block" value = "Login" onclick = "return confirmLogin()">
