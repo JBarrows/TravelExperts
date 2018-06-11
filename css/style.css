@@ -7,11 +7,13 @@ body {
 	font-family: 'Poppins', sans-serif;
 	margin: 0 0 150px;	/*OA*/	
 }
-*{/*OA*/
-	box-sizing: border-box;	
+
+
+*{	/*OA*/
+	box-sizing: border-box;
 }
 
-html{/*OA*/
+html{
   position:relative;
   min-height: 100%;
 }
@@ -195,6 +197,19 @@ div.artcontent {
 	 margin: 0 4vw;
 }
 
+<<<<<<< HEAD
+/* .artcontent button {
+	font-weight: bold;
+	padding: 15px;
+} */
+
+/* .artcontent button:hover {
+	box-shadow: 3px 3px 3px black;
+} */
+
+
+=======
+>>>>>>> af95375c2be31c7f9ed8a82dd93441b172782bca
 /****************************************
 ************* Assist classes ************
 *****************************************/
