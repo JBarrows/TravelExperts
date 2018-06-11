@@ -58,7 +58,7 @@
 <body>
     <!-- <header> -->
     <?php include "php/header.php" ?>
-	
+
 	<!-- display a message if user is booking a package-->
 	<div class='container'>
 	<?php
