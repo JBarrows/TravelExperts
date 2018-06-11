@@ -18,11 +18,12 @@ to allow for easier navigation through the image sliders
     <?php $active='packages'; include "php/nav.php" ?>
 
     <section>
-        <h2>Packages</h2>
+        <h2 class='text-center'>Packages</h2>
         <br>
+        <div class='container-fluid'>
         <!--These containers will contain the images provided from the /img folder and display them with the slider buttons attached to either side -->
         <!--First Package-->
-    <div class="row">
+    <div class="jumbotron mx-sm-2 py-4 row">
       <div class="w3-content w3-display-container col-lg-7">
         <div class="w3-display-container mySlides">
 				      <img class="Slides1" src="img/proj img/carib1.jpg" style="width:100%;height:30%;object-fit:cover;">
@@ -40,10 +41,8 @@ to allow for easier navigation through the image sliders
      <?php getPackageDetails(1); ?>
    </div>
    </div>
-
-<br><br>
      <!-- Second Package-->
-     <div class="row">
+     <div class="jumbotron mx-sm-2 py-4 row">
      <div class="w3-content w3-display-container col-lg-7">
        <div class="w3-display-container mySlides1">
              <img class="Slides2" src="img/proj img/asia1.jpg" style="width:100%;height:30%;object-fit:cover;">
@@ -62,9 +61,8 @@ to allow for easier navigation through the image sliders
     <?php getPackageDetails(3); ?>
   </div>
   </div>
-<br><br>
     <!--Third Package-->
-    <div class="row">
+    <div class="jumbotron mx-sm-2 py-4 row">
     <div class="w3-content w3-display-container col-lg-7">
       <div class="w3-display-container mySlides2">
             <img class="Slides3" src="img/proj img/euro1.jpg" style="width:100%;height:30%;object-fit:cover;">
@@ -82,9 +80,8 @@ to allow for easier navigation through the image sliders
    <?php getPackageDetails(4); ?>
  </div>
  </div>
-<br><br>
    <!--Final package-->
-   <div class="row">
+   <div class="jumbotron mx-sm-2 py-4 row">
    <div class="w3-content w3-display-container col-lg-7">
      <div class="w3-display-container mySlides3">
            <img class="Slides4" src="img/proj img/poly1.jpg" style="width:100%;height:30%;object-fit:cover;">
@@ -100,6 +97,7 @@ to allow for easier navigation through the image sliders
   </div>
 <div class="col-lg-4">
   <?php getPackageDetails(2); ?>
+</div>
 </div>
 </div>
   <!--This inline script is just to populate the sliders for each package. In order to add to the list that shows

@@ -26,14 +26,16 @@
             {
               $style = '';
             }
+            //echo "<div class='jumbotron py-3'>";
             echo "<b>Package Name:</b> $row[1]<br>";
             echo "<b>Package Description:</b> $row[4]<br>";
-            echo "<b><span style='$style'>Start Date:</b> $row[2]</span><br>";
-            echo "<b>End Date:</b> $row[3]<br>";
-            echo "<b>Package Cost:</b> $row[5]<br>";
+            echo "<b><span style='$style'>Start Date:</b> ".date('d-m-Y', strtotime($row[2]))."</span><br>";
+            echo "<b>End Date:</b> ".date('d-m-Y', strtotime($row[3]))."<br>";
+            echo "<b>Package Cost:</b> \$".number_format($row[5])."<br>";
 		  echo "<form action='$redirect?orderpackageid=$row[0]&packagename=$row[1]' method='post'>
             <input id='orderButton' type='submit' class='btn btn-info btn-md' value='Order Now!'>
             </form>";
+            // echo "</div>";
           }
         }
       }

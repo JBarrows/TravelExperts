@@ -166,46 +166,26 @@ footer a:visited {
  ****************************************/
 
 article {
-	background-color:lightgray;
 	height:300px;
 	margin: 0;
 	padding: 0;
 	position: relative;
 }
 
-article img {
+/* article img {
 	position:absolute;
 	height:100%;
 	width: 30%;
 	right:auto;
 	left:0;
-}
-
-article.oddart {
-	background:white;
-}
-
-article.oddart img {
-	right:0;
-	left:auto;
-}
+} */
 
 div.artcontent {
-	position:absolute;
-		width:70%;
-		top: 50%;
-		right:0;
-		left: auto;
-		transform: translateY(-50%);
+	padding-top: 50px;
 }
 
 .exipred {
 	color: red;
-}
-
-article.oddart div.artcontent {
-	right: auto;
-	left: 0;
 }
 
 .artcontent p, .artcontent button {
@@ -217,6 +197,7 @@ article.oddart div.artcontent {
 	 margin: 0 4vw;
 }
 
+<<<<<<< HEAD
 /* .artcontent button {
 	font-weight: bold;
 	padding: 15px;
@@ -227,6 +208,8 @@ article.oddart div.artcontent {
 } */
 
 
+=======
+>>>>>>> af95375c2be31c7f9ed8a82dd93441b172782bca
 /****************************************
 ************* Assist classes ************
 *****************************************/
@@ -237,6 +220,7 @@ article.oddart div.artcontent {
 .border, .hover-border:hover { outline: 1px solid darkgray; }
 .bot-align { vertical-align: bottom; }
 .cursor-pointer { cursor:pointer; }
+.footersize {height: 300px;}
 .highlights:hover { background: lightgray; }
 .left-align { text-align: left; }
 .right-align { text-align: right; }
