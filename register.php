@@ -229,7 +229,7 @@
 								</div>
 
 								<div class="form-group col-md-2">
-								  <label for="inputZip">Zip</label>
+								  <label for="inputZip">Postal Code</label>
 								  <input type = "text" name = "CustPostal"
 													   pattern ="[AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYy][0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz] ?[0-9][AaBbCcEeGgHhJjKkLlMmNnPpRrSsTtVvXxYyZz][0-9] ?"
 													   maxlength = "7"
