@@ -2,7 +2,7 @@ body {
 	background-color:white;
 	padding:0;
 	font-family: 'Poppins', sans-serif;
-	margin: 0 0 150px;		
+	margin: 0 0 150px;
 }
 *{
 	box-sizing: border-box;
@@ -58,7 +58,7 @@ div.titlebox img {
 p.subtitle {
 	font-style: italic;
 	font-size: 1.8em;
-	margin:-10px 0 10px 0;
+	margin-bottom: 10px;
 	padding: 0;
 }
 

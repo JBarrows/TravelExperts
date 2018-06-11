@@ -10,10 +10,7 @@
     <?php include "php/header.php" ?>
 
     <!-- <nav> -->
-    <?php include "php/nav.php" ?>
-
-    <!-- <nav> -->
-    <!-- <?php $active = 'contact'; include "php/nav.php" ?> -->
+    <?php $active = 'contact'; include "php/nav.php" ?>
 
 	<div class = 'container-fluid'>
 		<section>
