@@ -1,14 +1,17 @@
+/*Most of the CSS was written by Joel Barr JB, Olaoluwa Adesanya OA just 
+pitched in with the footer sticking to the bottom of the page and some other tidbits*/
+
 body {
 	background-color:white;
-	padding:0;
+	padding:0; /*OA*/
 	font-family: 'Poppins', sans-serif;
-	margin: 0 0 150px;
+	margin: 0 0 150px;	/*OA*/	
 }
-*{
-	box-sizing: border-box;
+*{/*OA*/
+	box-sizing: border-box;	
 }
 
-html{
+html{/*OA*/
   position:relative;
   min-height: 100%;
 }
@@ -106,7 +109,7 @@ p#headtitle {
 	padding: 0;
 	vertical-align: top;
 }
-/*HTML 5 Validation on the registration page*/
+/*HTML 5 Validation on the registration page*/ /*OA*/
 #register input:not([type = "reset"]):not([type = "submit"]):invalid {
         border: 2px solid red;
 }
@@ -135,7 +138,7 @@ nav.jnav .navbar-toggler:hover {
 	background-color: lightgray;
 }
 
-footer {
+footer {/*OA*/
 	background-color: black;
 	color: white;
 	text-align: center;
@@ -191,7 +194,6 @@ div.artcontent {
  .artcontent h2 {
 	 margin: 0 4vw;
 }
-
 
 /****************************************
 ************* Assist classes ************

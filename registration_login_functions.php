@@ -1,4 +1,5 @@
 <?php
+//Olaoluwa Adesanya
 function insertData($record, $dataArray){
 	$servername = "localhost";
 	$username = "root";
@@ -27,14 +28,14 @@ function insertData($record, $dataArray){
 		}
 		else {
 		
-		// construct and execute SQL statements using the variables from keys and values above	
-		$conn->exec("INSERT INTO $record ($keys) VALUES ($values)");
-		
-		//retrieve the last ID inserted so i can track my records
-		$lastID = $conn->lastInsertId();
-		fwrite($logfile, "New record to $record id: $lastID created successfully \n");
-		$_SESSION['userid'] = $lastID;
-		header('Location: myaccount.php');
+			// construct and execute SQL statements using the variables from keys and values above	
+			$conn->exec("INSERT INTO $record ($keys) VALUES ($values)");
+			
+			//retrieve the last ID inserted so i can track my records
+			$lastID = $conn->lastInsertId();
+			fwrite($logfile, "New record to $record id: $lastID created successfully \n");
+			$_SESSION['userid'] = $lastID;
+			header('Location: myaccount.php');
 		}
 		
 		
@@ -44,6 +45,7 @@ function insertData($record, $dataArray){
 			$errorString = $e->getMessage();
 			fwrite($logfile, "Error!: " .$errorString);
 		}
+	//kill db connection
 	$conn = null;
 	fclose($logfile);
 }
